@@ -1,0 +1,61 @@
+<section class="about_section layout_padding">
+  <div class="container  ">
+    <div class="row">
+      <div class="col-md-6 col-lg-6 ">
+        <div class="img-box">
+          <img [src]="product.url" alt="">
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-6 center_box">
+        <div class="detail-box">
+          <div class="heading_container">
+            <h2>
+              {{product.name}}
+            </h2>
+          </div>
+          <p>
+            <span class="mr-3"><i class="fa-solid fa-battery-full"></i></span> {{product.battery}}
+          </p>
+          <p *ngIf="product.callable === 0">
+            <span class="mr-3"><i class="fa-solid fa-phone"></i></span> Có thể gọi
+          </p>
+          <p *ngIf="product.category.id === 1">
+            <span class="mr-3"><i class="fa-solid fa-heart-pulse"></i></span> Nhiều tiện ích sức khỏe
+          </p>
+          <p>
+            <span class="mr-3"><i class="fa-solid fa-palette"></i></span> {{product.color}}
+          </p>
+          <p *ngIf="product.bluetooth == 0">
+            <span class="mr-3"><i class="fa-brands fa-bluetooth"></i></span> Có bluetooth
+          </p>
+          <p>
+            <span class="mr-3"><i class="fa-solid fa-earth-asia"></i></span> {{product.countryOfOrigin}}
+          </p>
+          <p>
+            <span class="mr-3"><i class="fa-solid fa-tag"></i></span>
+            {{product.price | number}}
+            <sup>đ</sup>
+          </p>
+          <p>
+            <span class="mr-3"><i class="fa-solid fa-arrow-up-9-1"></i></span> {{product.quantity}} cái
+          </p>
+          <div>
+            <a (click)="addCart(product)" style="width: 40%; text-align: center">
+              Đặt hàng
+            </a>
+          </div>
+          <div>
+            <a *ngIf="role === 'ADMIN'" routerLink="/edit-product/{{product.id}}" style="width: 40%; text-align: center">
+              Chỉnh sửa
+            </a>
+          </div>
+          <div>
+            <a *ngIf="role === 'ADMIN'" (click)="delete(product.id)" style="width: 40%; text-align: center">
+              Xóa sản phẩm
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,38 @@
+/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/ngx-toastr/toastr.css";
+.icon-right{
+  border-radius: 50%;
+  font-size: 25px;
+  font-weight: bold;
+  height: 50px;
+  width: 50px;
+  border: 0;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 10px;
+}
+
+.center-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.space-around {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.delete {
+  background-color: #f0d43a;
+  font-weight: 500;
+  position: fixed;
+}
+
+.delete:hover {
+  background-color: #007bff;
+  color: white;
+}
+

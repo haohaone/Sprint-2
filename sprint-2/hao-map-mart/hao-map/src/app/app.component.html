@@ -1,0 +1,10 @@
+<app-header></app-header>
+<router-outlet></router-outlet>
+<app-footer></app-footer>
+<button *ngIf="quantityProduct !== 0" class=" icon-right btn space-around delete rung" routerLink="/cart">
+  <i class="fa-sharp fa-solid fa-cart-shopping" style="font-size: 18px"></i>
+  <div>{{quantityProduct}}</div>
+</button>
+<button *ngIf="quantityProduct === 0" class=" icon-right btn center-box  delete" routerLink="/cart">
+  <i class="fa-sharp fa-solid fa-cart-shopping"></i>
+</button>

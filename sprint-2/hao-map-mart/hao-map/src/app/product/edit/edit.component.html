@@ -1,0 +1,91 @@
+<section class="contact_section layout_padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form_container">
+          <div class="heading_container">
+            <h2>
+              CHỈNH SỬA SẢN PHẨM
+            </h2>
+          </div>
+          <form [formGroup]="productForm">
+            <div>
+              <label>Mã sản phẩm: </label>
+              <input type="text" placeholder="mã sản phẩm" formControlName="id" disabled>
+
+            </div>
+            <div>
+              <label class="mr-1">Tên sản phẩm: </label>
+              <span class="text-danger" *ngIf="productForm.get('name').hasError('required') &&
+              (productForm.get('name').dirty || productForm.get('name').touched)">
+                Không được để trống
+              </span>
+              <input type="text" placeholder="tên sản phẩm" formControlName="name">
+            </div>
+            <div>
+              <label class="mr-1">Pin (mAh): </label>
+              <span class="text-danger" *ngIf="productForm.get('battery').hasError('battery') &&
+              (productForm.get('battery').dirty || productForm.get('battery').touched)">
+                Không được để trống
+              </span>
+              <input type="number" placeholder="pin" formControlName="battery">
+            </div>
+            <div>
+              <label class="mr-1">Xuất xứ: </label>
+              <input type="text" placeholder="xuất xứ" formControlName="countryOfOrigin">
+            </div>
+            <div>
+              <label class="mr-1">Màu sắc: </label>
+              <input type="text" placeholder="màu sắc" formControlName="color">
+            </div>
+            <div>
+              <label class="mr-1">Giá: </label>
+              <input type="number" placeholder="giá" formControlName="price">
+            </div>
+            <div>
+              <label class="mr-1">Số lượng: </label>
+              <input type="number" placeholder="số lượng" formControlName="quantity">
+            </div>
+            <div>
+              <label class="mr-1">Hình ảnh mô tả: </label>
+              <input type="text" placeholder="hình ảnh" formControlName="url">
+            </div>
+            <div>
+              <label class="mr-1">Bluetooth: </label>
+              <select formControlName="bluetooth">
+                <option value="">Chọn loại bluetooth</option>
+                <option value="0">Có</option>
+                <option value="1">Không có</option>
+              </select>
+            </div>
+            <div>
+              <label class="mr-1">Gọi điện: </label>
+              <select formControlName="callable">
+                <option value="">chọn tính năng gọi điện</option>
+                <option value="0">Có</option>
+                <option value="1">Không có</option>
+              </select>
+            </div>
+            <div>
+              <label class="mr-1">Loại sản phẩm: </label>
+              <select formControlName="category">
+                <option value="">chọn loại sản phẩm</option>
+                <option [value]="category" *ngFor="let category of categoryList">{{category.name}}</option>
+              </select>
+            </div>
+            <div class="d-flex ">
+              <button type="button" (click)="submit()">
+                Chỉnh sửa
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="img-box">
+          <img [src]="url" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

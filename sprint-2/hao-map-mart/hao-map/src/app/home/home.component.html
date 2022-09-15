@@ -1,0 +1,340 @@
+<!-- slider section -->
+<section class="slider_section ">
+  <div id="customCarousel1" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="container-fluid ">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="detail-box">
+                <h1>
+                  Đồng hồ thông minh
+                </h1>
+                <p>
+                  Đồng hồ thông minh 1 mang kiểu dáng cá tính, hiện đại cùng tông màu đen mạnh mẽ, trẻ trung. Đồng hồ sở
+                  hữu khung viền hợp kim nhôm có trọng lượng nhẹ, bền bỉ, bảo vệ an toàn các chi tiết bên trong. Dây đeo
+                  silicone êm nhẹ, độ đàn hồi tốt, không thấm nước, cho bạn thoải mái đeo suốt ngày dài
+                </p>
+                <div class="btn-box">
+                  <a href="" class="btn1">
+                    Đồng hồ
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="img-box">
+                <img
+                  src="https://cdn.shopify.com/s/files/1/0057/8938/4802/files/Untitled-1_5087842b-b685-43f9-a536-35d3f3b7faf8.png?v=1658290217"
+                  alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item ">
+        <div class="container-fluid ">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="detail-box">
+                <h1>
+                  Loa bluetooth
+                </h1>
+                <p>
+                  Loa Bluetooth Marshall Emberton là dòng sản phẩm loa di động nhỏ gọn nhất từ thương hiệu loa nổi tiếng
+                  đến từ Anh Quốc, mang đến chất lượng âm thanh vượt trội, cùng thiết kế hiện đại, sang trọng khẳng định
+                  phong cách của người sử dụng.
+                </p>
+                <div class="btn-box">
+                  <a href="" class="btn1">
+                    Loa bluetooth
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="img-box">
+                <img
+                  src="https://cdn.shopify.com/s/files/1/0057/8938/4802/files/main2_a3028877-23cf-4062-923a-abae4117f34d.png?v=1640079289"
+                  alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item ">
+        <div class="container-fluid ">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="detail-box">
+                <h1>
+                  Tai nghe gaming
+                </h1>
+                <p>
+                  Một chiếc headphone chất lượng sẽ cho bạn những trải nghiệm âm nhạc sống động và thú vị. Và nếu vẫn
+                  chưa biết nên chọn loại tai nghe nào, bạn có thể thử sản phẩm tai nghe của boAt.
+                <div class="btn-box">
+                  <a href="" class="btn1">
+                    Tai nghe gaming
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="img-box">
+                <img src="https://cdn.shopify.com/s/files/1/0057/8938/4802/files/Banner3-product4.png?v=1622101780"
+                     alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ol class="carousel-indicators">
+      <li data-target="#customCarousel1" data-slide-to="0" class="active"></li>
+      <li data-target="#customCarousel1" data-slide-to="1"></li>
+      <li data-target="#customCarousel1" data-slide-to="2"></li>
+    </ol>
+  </div>
+
+</section>
+<!-- end slider section -->
+
+<!-- shop section -->
+<section class="shop_section">
+  <div class="container layout_padding">
+    <div class="heading_container heading_center">
+      <h2>
+        Đồng hồ mới nhất
+      </h2>
+    </div>
+    <div class="row">
+      <div class="col-sm-6 col-xl-3"
+           *ngFor="let watch of watchList ">
+        <div class="box">
+          <div class="img-box container-app geeks">
+            <img [src]="watch.url" alt="" class="image">
+            <div class="middle">
+              <a routerLink="/detail/{{watch.id}}" class="btn btn-warning mr-2" style="background: #f0d43a; border: 0">
+                <i class="fa-solid fa-circle-info"></i>
+              </a>
+              <button type="button" (click)="addCart(watch)" class="btn btn-warning ml-2"
+                      style="background: #f0d43a ; border: 0">
+                <i class="fa-solid fa-cart-plus"></i>
+              </button>
+            </div>
+          </div>
+          <div class="detail-box">
+            <h6>
+              {{watch.name}}
+            </h6>
+          </div>
+          <div class="detail-box">
+            <h6>
+              Giá:
+              <span class="text-danger">
+                ${{watch.price | number}}
+                <sup class="text-black-50">đ</sup>
+              </span>
+            </h6>
+          </div>
+          <div class="detail-box">
+            <h6>
+              Số lượng:
+              <span>
+                    {{watch.quantity}}
+                  </span>
+            </h6>
+          </div>
+          <div class="new">
+                <span>
+                  Mới
+                </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="btn-box">
+      <a routerLink="/watch">
+        Xem thêm
+      </a>
+    </div>
+  </div>
+  <div class="container layout_padding">
+    <div class="heading_container heading_center">
+      <h2>
+        Tai nghe mới nhất
+      </h2>
+    </div>
+    <div class="row">
+      <div class="col-sm-6 col-xl-3"
+           *ngFor="let headPhone of headPhoneList">
+        <div class="box">
+          <div class="img-box container-app geeks">
+            <img [src]="headPhone.url" alt="" class="image">
+            <div class="middle">
+              <a routerLink="/detail/{{headPhone.id}}" class="btn btn-warning mr-2"
+                 style="background: #f0d43a; border: 0">
+                <i class="fa-solid fa-circle-info"></i>
+              </a>
+              <a (click)="addCart(headPhone)" class="btn btn-warning ml-2" style="background: #f0d43a ; border: 0">
+                <i class="fa-solid fa-cart-plus"></i>
+              </a>
+            </div>
+          </div>
+          <div class="detail-box">
+            <h6>
+              {{headPhone.name}}
+            </h6>
+          </div>
+          <div class="detail-box">
+            <h6>
+              <span class="text-danger">
+                ${{headPhone.price | number}}
+                <sup class="text-black-50">đ</sup>
+              </span>
+            </h6>
+          </div>
+          <div class="detail-box">
+            <h6>
+              Số lượng:
+              <span>
+                    {{headPhone.quantity}}
+                  </span>
+            </h6>
+          </div>
+          <div class="new">
+                <span>
+                  Mới
+                </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="btn-box">
+      <a routerLink="/headPhone">
+        Xem thêm
+      </a>
+    </div>
+  </div>
+  <div class="container layout_padding">
+    <div class="heading_container heading_center">
+      <h2>
+        Loa mới nhất
+      </h2>
+    </div>
+    <div class="row">
+      <div class="col-sm-6 col-xl-3"
+           *ngFor="let speaker of speakerList">
+        <div class="box">
+          <div class="img-box container-app geeks">
+            <img [src]="speaker.url" alt="" class="image">
+            <div class="middle space-around">
+              <a routerLink="/detail/{{speaker.id}}" class="btn btn-warning mr-2"
+                 style="background: #f0d43a; border: 0">
+                <i class="fa-solid fa-circle-info"></i>
+              </a>
+              <a (click)="addCart(speaker)" class="btn btn-warning ml-2"
+                 style="background: #f0d43a ; border: 0">
+                <i class="fa-solid fa-cart-plus"></i>
+              </a>
+            </div>
+          </div>
+          <div class="detail-box">
+            <h6>
+              {{speaker.name}}
+            </h6>
+          </div>
+          <div class="detail-box">
+            <h6>
+              Giá:
+              <span class="text-danger">
+                ${{speaker.price | number}}
+                <sup class="text-black-50">đ</sup>
+              </span>
+            </h6>
+          </div>
+          <div class="detail-box">
+            <h6>
+              Số lượng:
+              <span>
+                    {{speaker.quantity}}
+                  </span>
+            </h6>
+          </div>
+          <div class="new">
+                <span>
+                  Mới
+                </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="btn-box">
+      <a routerLink="/speaker">
+        Xem thêm
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- feature section -->
+<section class="feature_section layout_padding">
+  <div class="container">
+    <div class="heading_container">
+      <h2>
+        TÍNH NĂNG ĐỒNG HỒ
+      </h2>
+    </div>
+    <div class="row">
+      <div class="col-sm-6 col-lg-3">
+        <div class="box">
+          <div class="img-box">
+            <img src="assets/images/f1.png" alt="">
+          </div>
+          <div class="detail-box">
+            <h5>
+              Theo dõi thể dục
+            </h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="box">
+          <div class="img-box">
+            <img src="assets/images/f2.png" alt="">
+          </div>
+          <div class="detail-box">
+            <h5>
+              Báo thức và thông báo
+            </h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="box">
+          <div class="img-box">
+            <img src="assets/images/f3.png" alt="">
+          </div>
+          <div class="detail-box">
+            <h5>
+              Tin nhắn
+            </h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="box">
+          <div class="img-box">
+            <img src="assets/images/f4.png" alt="">
+          </div>
+          <div class="detail-box">
+            <h5>
+              Bluetooth
+            </h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

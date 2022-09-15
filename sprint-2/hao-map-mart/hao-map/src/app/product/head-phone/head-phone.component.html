@@ -1,0 +1,76 @@
+<section class="shop_section">
+  <div class="container layout_padding">
+    <div class="heading_container heading_center">
+      <h1 class="font-weight-bold">
+        DANH SÁCH TAI NGHE GAMING
+      </h1>
+    </div>
+    <div class="row">
+      <div class="col-sm-6 col-xl-3">
+        <input type="text" class="text-left btn search" placeholder="Tên sản phẩm" (change)="searchName($event.target.value)">
+      </div>
+      <div class="col-sm-6 col-xl-3">
+        <select class="btn search text-left" (change)="searchPrice($event.target.value)">
+          <option value="">Giá</option>
+          <option value="ASC">Tăng dần <i class="fa-solid fa-up"></i></option>
+          <option value="DESC">Giảm dần <i class="fa-solid fa-down-left"></i></option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6 col-xl-3"
+           *ngFor="let headPhone of headPhoneList">
+        <div class="box">
+          <div class="img-box container-app geeks">
+            <img [src]="headPhone.url" alt="" class="image">
+            <div class="middle">
+              <a routerLink="/detail/{{headPhone.id}}" class="btn btn-warning mr-2"
+                 style="background: #f0d43a; border: 0">
+                <i class="fa-solid fa-circle-info"></i>
+              </a>
+              <a (click)="addCart(headPhone)" class="btn btn-warning ml-2" style="background: #f0d43a ; border: 0">
+                <i class="fa-solid fa-cart-plus"></i>
+              </a>
+            </div>
+          </div>
+          <div class="detail-box">
+            <h6>
+              {{headPhone.name}}
+            </h6>
+          </div>
+          <div class="detail-box">
+            <h6>
+              Giá:
+              <span class="text-danger">
+                ${{headPhone.price | number}}
+                <sup class="text-black-50">đ</sup>
+              </span>
+            </h6>
+          </div>
+          <div class="detail-box">
+            <h6>
+              Số lượng:
+              <span>
+                    {{headPhone.quantity}}
+                  </span>
+            </h6>
+          </div>
+          <div style="float: right" *ngIf="role === 'ADMIN'">
+            <button class="btn mr-1 edit-delete" (click)="delete(headPhone.id)">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+            <button class="btn ml-1 edit-delete" routerLink="/edit-product/{{headPhone.id}}">
+              <i class="fa-solid fa-pen-to-square"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="btn-box">
+      <a (click)="loadMore()">
+        Xem thêm
+      </a>
+    </div>
+  </div>
+</section>
+

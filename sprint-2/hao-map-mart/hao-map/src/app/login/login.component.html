@@ -1,0 +1,35 @@
+<section class="contact_section layout_padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form_container">
+          <div class="heading_container">
+            <h2>
+              ĐĂNG NHẬP
+            </h2>
+          </div>
+          <form [formGroup]="loginForm">
+            <div>
+              <label>Tên tài khoản: </label>
+              <input type="text" name="name" placeholder="tài khoản" formControlName="username">
+            </div>
+            <div>
+              <label>Mật khẩu: </label>
+              <input type="password" name="password" placeholder="mật khẩu" formControlName="password">
+            </div>
+            <div class="d-flex ">
+              <button type="button" (click)="submit()">
+                Đăng nhập
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="img-box">
+          <img src="assets/images/contact-img.jpg" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
