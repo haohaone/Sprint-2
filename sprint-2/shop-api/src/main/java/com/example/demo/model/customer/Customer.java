@@ -1,8 +1,9 @@
 package com.example.demo.model.customer;
 
+import com.example.demo.model.transaction.Transaction;
 import com.example.demo.model.user.AppUser;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-
+import java.util.List;
 import javax.persistence.*;
 
 @Entity
@@ -32,7 +33,18 @@ public class Customer {
     @JsonBackReference("customer")
     private AppUser appUser;
 
+    @OneToMany(mappedBy = "customer")
+    private List<Transaction> transactionList;
+
     public Customer() {
+    }
+
+    public List<Transaction> getTransactionList() {
+        return transactionList;
+    }
+
+    public void setTransactionList(List<Transaction> transactionList) {
+        this.transactionList = transactionList;
     }
 
     public Integer getId() {

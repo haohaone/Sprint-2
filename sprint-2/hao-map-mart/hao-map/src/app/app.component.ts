@@ -18,6 +18,9 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.quantityProduct = localStorage.length;
+    if (localStorage.getItem('__paypal_storage__') !== null){
+      this.quantityProduct--;
+    }
   }
 
 }

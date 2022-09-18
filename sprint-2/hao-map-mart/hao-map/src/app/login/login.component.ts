@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
         const tokenStr = 'Bearer ' + value.token;
         sessionStorage.setItem('token', tokenStr);
         sessionStorage.setItem('roles', value.roles[0].authority);
-        this.router.navigateByUrl('/');
+        history.back();
         this.shareDataService.sendClickEvent();
         this.toastService.success('Đăng nhập thành công')
       },

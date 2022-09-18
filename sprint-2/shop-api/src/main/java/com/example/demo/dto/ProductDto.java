@@ -28,24 +28,19 @@ public class ProductDto {
     private String url;
     @NotNull
     private Category category;
+    @NotNull
+    private Integer quantity;
     private Integer quantityOrder;
 
     public ProductDto() {
     }
 
-    public ProductDto(Integer id, Integer isDelete, String name, String battery, Integer bluetooth, Integer callable, String countryOfOrigin, String color, Double price, String url, Category category, Integer quantityOrder) {
-        this.id = id;
-        this.isDelete = isDelete;
-        this.name = name;
-        this.battery = battery;
-        this.bluetooth = bluetooth;
-        this.callable = callable;
-        this.countryOfOrigin = countryOfOrigin;
-        this.color = color;
-        this.price = price;
-        this.url = url;
-        this.category = category;
-        this.quantityOrder = quantityOrder;
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 
     public Integer getId() {

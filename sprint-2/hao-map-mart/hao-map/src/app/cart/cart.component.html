@@ -15,13 +15,6 @@
                     <p class="mb-1">Giỏ hàng</p>
                     <p class="mb-0">Bạn có {{productList.length}} sản phẩm trong giỏ hàng</p>
                   </div>
-                  <div>
-                    <p class="mb-0"><span class="text-muted">Sắp xếp theo:</span>
-                      <a href="#!" class="text-body">Giá
-                        <i class="fas fa-angle-down mt-1"></i>
-                      </a>
-                    </p>
-                  </div>
                 </div>
 
                 <div id="test">
@@ -40,8 +33,12 @@
                           </div>
                         </div>
                         <div class="d-flex flex-row align-items-center">
-                          <div style="width: 50px;">
+                          <div style="width: 30px;">
                             <h5 class="fw-normal mb-0">{{product.quantityOrder}}</h5>
+                          </div>
+                          <div style="width: 30px">
+                            <i (click)="upQuantity(product.id)" class="fa-solid pointer w-100 text-primary fa-chevron-up"></i>
+                            <i *ngIf="product.quantityOrder > 1" (click)="downQuantity(product.id)" class="fa-solid pointer w-100 text-primary fa-chevron-down"></i>
                           </div>
                           <div style="width: 150px;">
                             <h5 class="mb-0 text-danger">
@@ -49,9 +46,10 @@
                               <sup class="text-black-50">đ</sup>
                             </h5>
                           </div>
-                          <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
+                          <button (click)="delete(product)" style="color: #cecece; border: 0; background: white">
+                            <i class="fas fa-trash-alt"></i>
+                          </button>
                         </div>
-
                       </div>
                     </div>
                   </div>
@@ -63,83 +61,55 @@
                 <div class="card bg-primary text-white rounded-3">
                   <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-4">
-                      <h5 class="mb-0">Card details</h5>
+                      <h5 class="mb-0">Thánh Toán Paypal</h5>
                       <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
                            class="img-fluid rounded-3" style="width: 45px;" alt="Avatar">
                     </div>
-
-                    <p class="small mb-2">Card type</p>
-                    <a href="#!" type="submit" class="text-white"><i
-                      class="fab fa-cc-mastercard fa-2x me-2"></i></a>
-                    <a href="#!" type="submit" class="text-white"><i
-                      class="fab fa-cc-visa fa-2x me-2"></i></a>
-                    <a href="#!" type="submit" class="text-white"><i
-                      class="fab fa-cc-amex fa-2x me-2"></i></a>
-                    <a href="#!" type="submit" class="text-white"><i class="fab fa-cc-paypal fa-2x"></i></a>
-
-                    <form class="mt-4">
-                      <div class="form-outline form-white mb-4">
-                        <input type="text" id="typeName" class="form-control form-control-lg" siez="17"
-                               placeholder="Cardholder's Name"/>
-                        <label class="form-label" for="typeName">Cardholder's Name</label>
-                      </div>
-
-                      <div class="form-outline form-white mb-4">
-                        <input type="text" class="form-control form-control-lg" siez="17"
-                               placeholder="1234 5678 9012 3457" minlength="19" maxlength="19"/>
-                        <label class="form-label" >Card Number</label>
-                      </div>
-
-                      <div class="row mb-4">
-                        <div class="col-md-6">
-                          <div class="form-outline form-white">
-                            <input type="text" class="form-control form-control-lg"
-                                   placeholder="MM/YYYY" size="7" id="exp" minlength="7" maxlength="7"/>
-                            <label class="form-label">Expiration</label>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-outline form-white">
-                            <input type="password" class="form-control form-control-lg"
-                                   placeholder="&#9679;&#9679;&#9679;" size="1" minlength="3" maxlength="3"/>
-                            <label class="form-label">Cvv</label>
-                          </div>
-                        </div>
-                      </div>
-
-                    </form>
-
                     <hr class="my-4">
 
                     <div class="d-flex justify-content-between">
-                      <p class="mb-2">Subtotal</p>
-                      <p class="mb-2">$4798.00</p>
+                      <p class="mb-2">Tổng tiền</p>
+                      <p class="mb-2">
+                        {{subTotal | number}}
+                        <sup>đ</sup>
+                      </p>
                     </div>
 
                     <div class="d-flex justify-content-between">
-                      <p class="mb-2">Shipping</p>
-                      <p class="mb-2">$20.00</p>
+                      <p class="mb-2">Phí vận chuyển</p>
+                      <p class="mb-2">
+                        {{ship | number}}
+                        <sup>đ</sup>
+                      </p>
                     </div>
 
                     <div class="d-flex justify-content-between mb-4">
-                      <p class="mb-2">Total(Incl. taxes)</p>
-                      <p class="mb-2">$4818.00</p>
+                      <p class="mb-2">Tổng tiền phải trả</p>
+                      <p class="mb-2">
+                        {{total | number}}
+                        <sup>đ</sup>
+                      </p>
                     </div>
 
-                    <button type="button" class="btn btn-info btn-block btn-lg">
+                    <button *ngIf="role !== null" type="button" class="btn mb-4 btn-info btn-block btn-lg" (click)="pay()">
                       <div class="d-flex justify-content-between">
-                        <span>$4818.00</span>
-                        <span>Checkout <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
+                        <span>
+                          {{total | number}}
+                          <sup>đ</sup>
+                        </span>
+                        <span>Thanh toán<i class="fas fa-long-arrow-alt-right ml-2"></i></span>
                       </div>
                     </button>
-
+                    <button *ngIf="role === null" type="button" class="btn mb-4 btn-info btn-block btn-lg center-box" routerLink="/login">
+                      <div class="d-flex justify-content-between">
+                        <span>Đăng nhập để thanh toán</span>
+                      </div>
+                    </button>
+                    <div id="myPaypal"></div>
                   </div>
                 </div>
-
               </div>
-
             </div>
-
           </div>
         </div>
       </div>

@@ -58,8 +58,6 @@ export class WatchComponent implements OnInit {
 
   addCart(product: Product) {
     const value = localStorage.getItem(String(product.id));
-    console.log(product);
-    console.log(value);
     if (value === null){
       localStorage.setItem(String(product.id), '1');
       this.shareDataService.sendClickEvent();

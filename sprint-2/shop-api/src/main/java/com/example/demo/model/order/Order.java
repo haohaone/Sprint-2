@@ -1,11 +1,11 @@
 package com.example.demo.model.order;
 
-import com.example.demo.model.customer.Customer;
 import com.example.demo.model.product.Product;
+import com.example.demo.model.transaction.Transaction;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "order_mart")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,14 +18,20 @@ public class Order {
     private int quantity;
 
     @ManyToOne
-    @JoinColumn(name = "customer_id", referencedColumnName = "id")
-    private Customer customer;
+    @JoinColumn(name = "transaction_id", referencedColumnName = "id")
+    private Transaction transactionOrder;
 
     @ManyToOne
     @JoinColumn(name = "product_id", referencedColumnName = "id")
-    private Product product;
+    private Product productOrder;
 
     public Order() {
+    }
+
+    public Order(int quantity, Transaction transactionOrder, Product productOrder) {
+        this.quantity = quantity;
+        this.transactionOrder = transactionOrder;
+        this.productOrder = productOrder;
     }
 
     public Integer getId() {
@@ -52,19 +58,19 @@ public class Order {
         this.quantity = quantity;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public Transaction getTransactionOrder() {
+        return transactionOrder;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setTransactionOrder(Transaction transactionOrder) {
+        this.transactionOrder = transactionOrder;
     }
 
-    public Product getProduct() {
-        return product;
+    public Product getProductOrder() {
+        return productOrder;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProductOrder(Product productOrder) {
+        this.productOrder = productOrder;
     }
 }

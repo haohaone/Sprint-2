@@ -36,7 +36,7 @@ public class Product {
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category category;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "productOrder")
     @JsonBackReference("product")
     private List<Order> orderList;
 
