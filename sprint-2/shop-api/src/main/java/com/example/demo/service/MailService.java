@@ -53,7 +53,7 @@ public class MailService {
             message.setRecipients(Message.RecipientType.TO, new InternetAddress[]{new InternetAddress(emailCustomer)});
 
             message.setFrom(new InternetAddress(email));
-            message.setSubject("Spring-email-with-thymeleaf subject");
+            message.setSubject("Thông tin đơn hàng");
             message.setContent(thymeleafService.getContent(transaction, productDtoList), CONTENT_TYPE_TEXT_HTML);
             Transport.send(message);
         } catch (MessagingException e) {

@@ -6,7 +6,6 @@ import com.example.demo.model.product.Product;
 import com.example.demo.model.transaction.Transaction;
 import com.example.demo.repository.OderRepository;
 import com.example.demo.service.MailService;
-import com.example.demo.service.ThymeleafService;
 import com.example.demo.service.order.IOrderService;
 import com.example.demo.service.product.ProductService;
 import com.example.demo.service.transaction.ITransactionService;
@@ -14,9 +13,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.DateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -29,8 +25,6 @@ public class OrderService implements IOrderService {
     private ProductService productService;
     @Autowired
     private MailService mailService;
-    @Autowired
-    private ThymeleafService thymeleafService;
 
     @Override
     public void saveProductInCustomer(List<ProductDto> productDtoList) {
@@ -45,6 +39,6 @@ public class OrderService implements IOrderService {
             order = new Order(productDto.getQuantityOrder(), transaction, product);
             oderRepository.save(order);
         }
-        mailService.sendMail("daihoanhao@gmail.com", transaction, productDtoList);
+        mailService.sendMail(transaction.getCustomer().getEmail(), transaction, productDtoList);
     }
 }
