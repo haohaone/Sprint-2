@@ -1,0 +1,9 @@
+.tr-hover:hover{
+  background-color: #eeeeee;
+}
+
+.item-hover:hover{
+  transform: translateY(-0.2rem);
+  transition: .3s;
+  color: #3b4a6b;
+}

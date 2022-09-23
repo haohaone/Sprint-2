@@ -4,3 +4,19 @@
   overflow-x:hidden;
   overflow-y:auto;
 }
+
+.bg-c-lite-green {
+  background: -webkit-gradient(linear, left top, right top, from(#4d618c), to(#3b4a6b));
+  background: linear-gradient(to right, #3b4a6b, #4d618c);
+}
+
+.bg-c-lite-white {
+  background: -webkit-gradient(linear, left top, right top, from(#4d618c), to(white));
+  background: linear-gradient(to right, white, #4d618c);
+}
+
+.item-hover:hover{
+  transform: translateY(-0.2rem);
+  transition: .3s;
+  color: #3b4a6b;
+}

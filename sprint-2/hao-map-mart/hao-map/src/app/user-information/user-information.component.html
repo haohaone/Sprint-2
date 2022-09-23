@@ -1,0 +1,120 @@
+<div class="page-content page-container" id="page-content" style="background: #eeeeee">
+  <div class="padding">
+    <div class="row d-flex justify-content-center">
+      <div class="col-xl-10 col-md-12">
+        <div class="card user-card-full">
+          <div class="row m-l-0 m-r-0">
+            <div class="col-sm-4 bg-c-lite-green user-profile">
+              <div class="card-block text-center text-white">
+                <div class="m-b-25">
+                  <img *ngIf="customer.gender == 0" src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius" alt="User-Profile-Image">
+                  <img *ngIf="customer.gender == 1"  src="https://img.icons8.com/bubbles/100/000000/brown-pigtail-hair-lady.png" class="img-radius" alt="User-Profile-Image"/>
+                </div>
+                <p class="f-w-600">{{customer.name}}</p>
+                <p>{{customer.appUser.username}}</p>
+                <i class="fa-solid fa-pen-to-square"></i>
+              </div>
+            </div>
+            <div class="col-sm-8">
+              <div class="card-block">
+                <p class="m-b-20 p-b-5 b-b-default f-w-600">THÔNG TIN NGƯỜI DÙNG</p>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <p class="m-b-10 f-w-600">Email</p>
+                    <h6 class="text-muted m-b-20 f-w-400">{{customer.email}}</h6>
+                  </div>
+                  <div class="col-sm-6">
+                    <p class="m-b-10 f-w-600">Mã tài khoản</p>
+                    <h6 class="text-muted m-b-20 f-w-400">{{customer.id}}</h6>
+                  </div>
+                  <div class="col-sm-6">
+                    <p class="m-b-10 f-w-600">Số điện thoại</p>
+                    <h6 class="text-muted m-b-20 f-w-400">{{customer.phoneNumber}}</h6>
+                  </div>
+                  <div class="col-sm-6">
+                    <p class="m-b-10 f-w-600">Giới tính</p>
+                    <h6 class="text-muted m-b-20 f-w-400" *ngIf="customer.gender == 0">Nam</h6>
+                    <h6 class="text-muted m-b-20 f-w-400" *ngIf="customer.gender == 1">Nữ</h6>
+                  </div>
+                  <div class="col-sm-6">
+                    <p class="m-b-10 f-w-600">Địa chỉ</p>
+                    <h6 class="text-muted m-b-20 f-w-400" >{{customer.address}}</h6>
+                  </div>
+                  <div class="col-sm-6">
+                    <p class="m-b-10 f-w-600">Loại tài khoản</p>
+                    <h6 class="text-muted m-b-20 f-w-400" >{{customer.appUser.appRoles[0].name}}</h6>
+                  </div>
+                </div>
+              </div>
+              <div class="card-block">
+                <p class="m-b-20 p-b-5 b-b-default f-w-600">LỊCH SỬ GIAO DỊCH</p>
+                <table class="table">
+                  <tr>
+                    <td class="border-top-0 f-w-600">Mã</td>
+                    <td class="border-top-0 f-w-600">Ngày giao dịch</td>
+                    <td class="border-top-0 f-w-600">Cổng thanh toán</td>
+                    <td class="border-top-0 f-w-600">Tổng tiền</td>
+                    <td class="border-top-0 f-w-600">Chi tiết</td>
+                  </tr>
+                  <tr  class="tr-hover" *ngFor="let transaction of transactionList| paginate :
+          { itemsPerPage: 5, currentPage: page + 1, totalItems: totalItems }">
+                    <td>{{transaction.id}}</td>
+                    <td>{{transaction.startDate | date: 'HH:mm:ss dd/MM/yyyy'}}</td>
+                    <td style="text-align: center">{{transaction.paymentMethod}}</td>
+                    <td>
+                      {{transaction.payment | number}}
+                      <sup>đ</sup>
+                    </td>
+                    <td style="text-align: center" class="item-hover">
+                      <button (click)="showDetail(transaction)" class="btn bg-white border-0 btn-hover-color" data-toggle="modal" data-target="#exampleModal">
+                        <i class="fa-solid fa-circle-info"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </table>
+                <div class="container center-box">
+                  <div style="margin-right: 30px">
+                    <pagination-controls previousLabel="Trước"
+                                         nextLabel="Sau" (pageChange)="getPage($event)"
+                                         style="float: right">
+                    </pagination-controls>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+        <p class="text-center h3 f-w-600 my-4">CHI TIẾT GIAO DỊCH</p>
+        <table class="table">
+          <tr>
+            <td class="border-top-0 f-w-600">#</td>
+            <td class="border-top-0 f-w-600">Hình ảnh</td>
+            <td class="border-top-0 f-w-600">Tên</td>
+            <td class="border-top-0 f-w-600">Giá tiền</td>
+            <td class="border-top-0 f-w-600">Số lượng order</td>
+          </tr>
+          <tr  class="tr-hover" *ngFor="let order of orderList; index as i">
+            <td>{{i + 1}}</td>
+            <td><img style="width: 50px; height: 50px" [src]="order.productOrder.url"></td>
+            <td>{{order.productOrder.name}}</td>
+            <td>
+              {{order.productOrder.price | number}}
+              <sup>đ</sup>
+            </td>
+            <td>{{order.quantity}}</td>
+          </tr>
+        </table>
+      </div>
+      <button hidden type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    </div>
+  </div>
+</div>

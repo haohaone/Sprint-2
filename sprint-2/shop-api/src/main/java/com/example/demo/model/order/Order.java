@@ -2,6 +2,7 @@ package com.example.demo.model.order;
 
 import com.example.demo.model.product.Product;
 import com.example.demo.model.transaction.Transaction;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 
@@ -19,6 +20,7 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name = "transaction_id", referencedColumnName = "id")
+    @JsonBackReference("transaction")
     private Transaction transactionOrder;
 
     @ManyToOne

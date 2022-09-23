@@ -1,6 +1,7 @@
 package com.example.demo.model.user;
 
 import com.example.demo.model.customer.Customer;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -14,13 +15,15 @@ public class AppUser {
     private String username;
     @Column(name = "user_password")
     private String password;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role",
     joinColumns = @JoinColumn(name = "user_name"),
     inverseJoinColumns = @JoinColumn(name = "role_id"))
-    Set<AppRole> appRoles = new HashSet<>();
+    private Set<AppRole> appRoles;
 
     @OneToOne(mappedBy = "appUser")
+    @JsonBackReference("customer")
     private Customer customer;
 
     public AppUser() {

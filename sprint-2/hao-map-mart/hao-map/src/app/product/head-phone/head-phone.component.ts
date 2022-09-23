@@ -43,6 +43,10 @@ export class HeadPhoneComponent implements OnInit {
   }
 
   addCart(product: Product) {
+    if (product.quantity == 0){
+      this.toast.error('Sản phẩm đã hết hàng');
+      return;
+    }
     const value = localStorage.getItem(String(product.id));
     console.log(product);
     console.log(value);

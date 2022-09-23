@@ -30,7 +30,6 @@ public class Customer {
 
     @OneToOne
     @JoinColumn(name = "user_name", referencedColumnName = "user_name")
-    @JsonBackReference("customer")
     private AppUser appUser;
 
     @OneToMany(mappedBy = "customer")

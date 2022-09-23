@@ -24,6 +24,7 @@ export class CartComponent implements OnInit {
   ship = 20000;
   role;
   checkClickPayment = false;
+  checkLoading = true;
 
   constructor(private productService: ProductService,
               private title: Title,
@@ -59,9 +60,11 @@ export class CartComponent implements OnInit {
   }
 
   pay() {
+
     if (this.checkClickPayment){
       return;
     }
+    document.getElementById("demo").innerHTML = '<div id="myPaypal"></div>'
     this.checkClickPayment = true;
     const value =  String((this.total/23000).toFixed(2));
     render({
@@ -69,12 +72,12 @@ export class CartComponent implements OnInit {
       value: value,
       currency: 'VND',
       onApprove: (detail) => {
-        this.toast.success('Thanh toán thành công');
         const transaction = {
           username: sessionStorage.getItem('username'),
           payment: this.total,
           paymentMethod: 'Pay Pal'
         }
+        this.checkLoading = false;
         this.transactionService.saveTransaction(transaction).subscribe(
           value => {},
           error => {},
@@ -90,6 +93,7 @@ export class CartComponent implements OnInit {
                 this.total = 20000;
                 this.checkClickPayment = false;
                 this.shareDataService.sendClickEvent();
+                this.checkLoading = true;
                 this.toast.success('Thanh toán thành công');
               }
             );
@@ -110,6 +114,8 @@ export class CartComponent implements OnInit {
     }
     this.total = this.subTotal + this.ship;
     this.shareDataService.sendClickEvent();
+    this.checkClickPayment = false;
+    document.getElementById("myPaypal").remove();
   }
 
   upQuantity(id: number) {
@@ -126,6 +132,8 @@ export class CartComponent implements OnInit {
       this.subTotal += product.price * product.quantityOrder
     }
     this.total = this.subTotal + this.ship;
+    this.checkClickPayment = false;
+    document.getElementById("myPaypal").remove();
   }
 
   downQuantity(id: number) {
@@ -142,5 +150,7 @@ export class CartComponent implements OnInit {
       this.subTotal += product.price * product.quantityOrder
     }
     this.total = this.subTotal + this.ship;
+    this.checkClickPayment = false;
+    document.getElementById("myPaypal").remove();
   }
 }

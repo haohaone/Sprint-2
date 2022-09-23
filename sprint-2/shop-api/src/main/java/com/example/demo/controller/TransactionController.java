@@ -9,6 +9,7 @@ import com.example.demo.service.order.IOrderService;
 import com.example.demo.service.transaction.ITransactionService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -37,6 +38,15 @@ public class TransactionController {
         transaction.setCustomer(customer);
         iTransactionService.save(transaction);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/get-transaction")
+    private ResponseEntity<?> getTransaction(@RequestParam(defaultValue = "0", name = "page") Integer page,
+                                             @RequestParam Integer id){
+        return new ResponseEntity<>(
+                iTransactionService.getTransactionByCustomerId(PageRequest.of(page, 5), id),
+                HttpStatus.OK
+        );
     }
 
     @PostMapping("/order")

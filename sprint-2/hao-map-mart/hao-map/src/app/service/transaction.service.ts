@@ -18,4 +18,9 @@ export class TransactionService {
   public addProductToOrder(productList: any): Observable<any> {
     return this.http.post<void>(this.API_URL + 'order', productList);
   }
+
+  getTransactionById(page: number, id: number): Observable<Transaction[]> {
+    if (id === null) {id = 0; }
+    return this.http.get<Transaction[]>(this.API_URL + `get-transaction?page=${page}&id=${id}`);
+  }
 }

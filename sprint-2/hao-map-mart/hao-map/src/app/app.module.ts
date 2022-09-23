@@ -18,6 +18,9 @@ import {ToastrModule} from "ngx-toastr";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ErrorComponent } from './error/error/error.component';
 import { EditComponent } from './product/edit/edit.component';
+import { UserInformationComponent } from './user-information/user-information.component';
+import {NgxPaginationModule} from 'ngx-pagination';
+
 
 @NgModule({
   declarations: [
@@ -32,7 +35,8 @@ import { EditComponent } from './product/edit/edit.component';
     HeadPhoneComponent,
     SpeakerComponent,
     ErrorComponent,
-    EditComponent
+    EditComponent,
+    UserInformationComponent
   ],
   imports: [
     BrowserModule,
@@ -47,6 +51,7 @@ import { EditComponent } from './product/edit/edit.component';
       progressBar: true,
       positionClass: 'toast-top-right',
     }),
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -5,8 +5,6 @@ import com.example.demo.model.order.Order;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -29,7 +27,6 @@ public class Transaction {
     private String paymentMethod;
 
     @OneToMany(mappedBy = "transactionOrder")
-    @JsonBackReference("transaction")
     private List<Order> orderList;
 
     public Transaction() {

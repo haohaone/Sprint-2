@@ -10,6 +10,8 @@ import {SpeakerComponent} from "./product/speaker/speaker.component";
 import {ErrorComponent} from "./error/error/error.component";
 import {EditComponent} from "./product/edit/edit.component";
 import {AdminRoleService} from "./service/admin-role.service";
+import {UserInformationComponent} from "./user-information/user-information.component";
+import {AdminMemberRoleService} from "./service/admin-member-role.service";
 
 
 const routes: Routes = [
@@ -21,7 +23,8 @@ const routes: Routes = [
   {path: 'headPhone', component: HeadPhoneComponent},
   {path: 'speaker', component: SpeakerComponent},
   {path: 'error/:error', component: ErrorComponent},
-  {path: 'edit-product/:id', component: EditComponent, canActivate: [AdminRoleService]}
+  {path: 'edit-product/:id', component: EditComponent, canActivate: [AdminRoleService]},
+  {path: 'user-information', component: UserInformationComponent, canActivate: [AdminMemberRoleService]}
 ];
 
 @NgModule({

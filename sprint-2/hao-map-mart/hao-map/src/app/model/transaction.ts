@@ -1,5 +1,10 @@
+import {OrderDetail} from "./order";
+
 export interface Transaction {
-  username: string;
-  payment: number;
-  paymentMethod: string;
+  id?: number;
+  startDate?: string;
+  username?: string;
+  payment?: number;
+  paymentMethod?: string;
+  orderList?: OrderDetail[];
 }

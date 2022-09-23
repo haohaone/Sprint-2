@@ -58,12 +58,13 @@
               </div>
               <div class="col-lg-5">
 
-                <div class="card bg-primary text-white rounded-3">
+                <div class="card bg-c-lite-green text-white rounded-3">
                   <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-4">
                       <h5 class="mb-0">Thánh Toán Paypal</h5>
-                      <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
-                           class="img-fluid rounded-3" style="width: 45px;" alt="Avatar">
+                      <div [hidden]="checkLoading == true" class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                      </div>
                     </div>
                     <hr class="my-4">
 
@@ -91,7 +92,7 @@
                       </p>
                     </div>
 
-                    <button *ngIf="role !== null" type="button" class="btn mb-4 btn-info btn-block btn-lg" (click)="pay()">
+                    <button *ngIf="role !== null && subTotal !== 0" id="payment" type="button" class="btn mb-4 item-hover btn-light btn-block btn-lg" (click)="pay()">
                       <div class="d-flex justify-content-between">
                         <span>
                           {{total | number}}
@@ -100,12 +101,12 @@
                         <span>Thanh toán<i class="fas fa-long-arrow-alt-right ml-2"></i></span>
                       </div>
                     </button>
-                    <button *ngIf="role === null" type="button" class="btn mb-4 btn-info btn-block btn-lg center-box" routerLink="/login">
+                    <button *ngIf="role === null" type="button" class="btn mb-4 btn-light item-hover btn-block btn-lg center-box" routerLink="/login">
                       <div class="d-flex justify-content-between">
                         <span>Đăng nhập để thanh toán</span>
                       </div>
                     </button>
-                    <div id="myPaypal"></div>
+                      <div id="demo"></div>
                   </div>
                 </div>
               </div>

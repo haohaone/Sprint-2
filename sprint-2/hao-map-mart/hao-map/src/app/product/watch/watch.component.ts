@@ -57,6 +57,10 @@ export class WatchComponent implements OnInit {
   }
 
   addCart(product: Product) {
+    if (product.quantity == 0){
+      this.toast.error('Sản phẩm đã hết hàng');
+      return;
+    }
     const value = localStorage.getItem(String(product.id));
     if (value === null){
       localStorage.setItem(String(product.id), '1');

@@ -27,11 +27,16 @@
             <span class="font-weight-bold" *ngIf="username !== null">{{username}}</span>
           </div>
           <div class="user_option-box " style="width: 6%">
-            <a (click)="logout()" *ngIf="username !== null">
-              <i class="fa-solid fa-right-from-bracket"></i>
+            <a (click)="logout()" *ngIf="username !== null"
+               data-toggle="tooltip" data-placement="bottom" title="Đăng xuất">
+              <i class="fa-solid fa-right-from-bracket item-hover"></i>
             </a>
-            <a *ngIf="username === null " routerLink="/login"  data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">
-              <i class="fa-solid fa-user"></i>
+            <a routerLink="/user-information" *ngIf="username !== null"
+               data-toggle="tooltip" data-placement="bottom" title="Thông tin người dùng">
+              <i class="fa-solid fa-user item-hover"></i>
+            </a>
+            <a *ngIf="username === null " routerLink="/login"  data-toggle="tooltip" data-placement="bottom" title="Đăng nhập">
+              <i class="fa-solid fa-right-to-bracket item-hover"></i>
             </a>
           </div>
         </div>
