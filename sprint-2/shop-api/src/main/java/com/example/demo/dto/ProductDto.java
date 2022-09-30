@@ -6,10 +6,8 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 public class ProductDto {
-    @NotNull
     private Integer id;
-    @NotNull
-    private Integer isDelete;
+    private Integer isDelete = 0;
     @NotEmpty
     private String name;
     @NotEmpty

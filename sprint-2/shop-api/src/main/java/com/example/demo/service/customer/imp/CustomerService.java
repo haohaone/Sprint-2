@@ -12,7 +12,7 @@ import java.util.Optional;
 public class CustomerService implements ICustomerService {
     @Autowired
     private CustomerRepository customerRepository;
-
+ 
     @Override
     public Optional<Customer> findCustomerByUserName(String username) {
         return customerRepository.findCustomerByUserName(username);

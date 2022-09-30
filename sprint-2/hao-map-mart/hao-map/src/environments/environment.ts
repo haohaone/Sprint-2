@@ -3,7 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebaseConfig: {
+    apiKey: "AIzaSyC1060esdN8jnlojQ7h3db-iVtZkoMq9NY",
+    authDomain: "chatbox-internet-service.firebaseapp.com",
+    databaseURL: "https://chatbox-internet-service-default-rtdb.asia-southeast1.firebasedatabase.app/",
+    projectId: "chatbox-internet-service",
+    storageBucket: "chatbox-internet-service.appspot.com",
+    messagingSenderId: "997935459840",
+    appId: "1:997935459840:web:9e6ebd19352cc9ed89b2e5"
+  }
 };
 
 /*

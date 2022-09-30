@@ -61,4 +61,26 @@ public class ProductController {
     public ResponseEntity<?> getAllCategory() {
         return new ResponseEntity<>(categoryService.findAll(), HttpStatus.OK);
     }
+
+    @PatchMapping("")
+    public ResponseEntity<?> updateProduct(@RequestBody ProductDto productDto, BindingResult bindingResult){
+        if (bindingResult.hasErrors()){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        Product product = new Product();
+        BeanUtils.copyProperties(productDto, product);
+        productService.update(product);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PostMapping("")
+    public ResponseEntity<?> addNew(@RequestBody ProductDto productDto, BindingResult bindingResult){
+        if (bindingResult.hasErrors()){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        Product product = new Product();
+        BeanUtils.copyProperties(productDto, product);
+        productService.update(product);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

@@ -12,6 +12,8 @@ import {EditComponent} from "./product/edit/edit.component";
 import {AdminRoleService} from "./service/admin-role.service";
 import {UserInformationComponent} from "./user-information/user-information.component";
 import {AdminMemberRoleService} from "./service/admin-member-role.service";
+import {AddNewComponent} from "./product/add-new/add-new.component";
+import {ChartComponent} from "./product/chart/chart.component";
 
 
 const routes: Routes = [
@@ -24,6 +26,8 @@ const routes: Routes = [
   {path: 'speaker', component: SpeakerComponent},
   {path: 'error/:error', component: ErrorComponent},
   {path: 'edit-product/:id', component: EditComponent, canActivate: [AdminRoleService]},
+  {path: 'add-new', component: AddNewComponent, canActivate: [AdminRoleService]},
+  {path: 'chart', component: ChartComponent, canActivate: [AdminRoleService]},
   {path: 'user-information', component: UserInformationComponent, canActivate: [AdminMemberRoleService]}
 ];
 

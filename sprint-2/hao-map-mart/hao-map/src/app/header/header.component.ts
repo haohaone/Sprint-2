@@ -10,6 +10,7 @@ import {ShareDataService} from "../service/share-data.service";
 })
 export class HeaderComponent implements OnInit {
   username;
+  role;
 
   constructor(private toastService: ToastrService,
               private router: Router,
@@ -21,6 +22,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.username = sessionStorage.getItem('username')
+    this.role = sessionStorage.getItem('roles')
   }
 
   logout() {

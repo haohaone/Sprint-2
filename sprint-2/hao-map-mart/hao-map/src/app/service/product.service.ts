@@ -54,6 +54,10 @@ export class ProductService {
     return this.http.patch<void>(this.API_URL, product);
   }
 
+  public addNew(product: Product): Observable<void> {
+    return this.http.post<void>(this.API_URL, product);
+  }
+
   public getAllCategory(): Observable<any> {
     return this.http.get<Category[]>(this.API_URL + 'categoryList');
   }

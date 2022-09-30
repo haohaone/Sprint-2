@@ -20,6 +20,11 @@ import { ErrorComponent } from './error/error/error.component';
 import { EditComponent } from './product/edit/edit.component';
 import { UserInformationComponent } from './user-information/user-information.component';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { AddNewComponent } from './product/add-new/add-new.component';
+import {AngularFireModule} from "@angular/fire";
+import {AngularFireStorage} from "@angular/fire/storage";
+import { environment } from 'src/environments/environment';
+import { ChartComponent } from './product/chart/chart.component';
 
 
 @NgModule({
@@ -36,7 +41,9 @@ import {NgxPaginationModule} from 'ngx-pagination';
     SpeakerComponent,
     ErrorComponent,
     EditComponent,
-    UserInformationComponent
+    UserInformationComponent,
+    AddNewComponent,
+    ChartComponent
   ],
   imports: [
     BrowserModule,
@@ -51,9 +58,12 @@ import {NgxPaginationModule} from 'ngx-pagination';
       progressBar: true,
       positionClass: 'toast-top-right',
     }),
-    NgxPaginationModule
+    NgxPaginationModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
-  providers: [],
+  providers: [
+    AngularFireStorage
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

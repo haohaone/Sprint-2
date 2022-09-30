@@ -14,7 +14,7 @@ public class Product {
     private Integer id;
 
     @Column(name = "is_deleted", columnDefinition = "BIT(1)")
-    private Integer isDelete;
+    private Integer isDelete = 0;
     @Column(name = "name")
     private String name;
     @Column(name = "battery")

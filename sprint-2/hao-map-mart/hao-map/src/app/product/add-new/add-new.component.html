@@ -1,15 +1,11 @@
 <section class="contact_section layout_padding">
   <div class="container">
     <h2 style="text-align: center; font-weight: bold">
-      CHỈNH SỬA SẢN PHẨM
+      THÊM MỚI SẢN PHẨM
     </h2>
     <form [formGroup]="productForm" class="row">
       <div class="col-md-6">
         <div class="form_container" style="float: top">
-          <div>
-            <label>Mã sản phẩm: </label>
-            <input type="text" formControlName="id" disabled>
-          </div>
           <div>
             <label class="mr-1">Tên sản phẩm: </label>
             <span class="text-danger" *ngIf="productForm.get('name').hasError('required') &&
@@ -47,8 +43,6 @@
             <input type="text" formControlName="color">
           </div>
         </div>
-      </div>
-      <div class="col-md-6">
         <div>
           <label class="mr-1">Bluetooth: </label>
           <span class="text-danger" *ngIf="productForm.get('bluetooth').hasError('required') &&
@@ -61,6 +55,9 @@
             <option value="1">Không có</option>
           </select>
         </div>
+      </div>
+
+      <div class="col-md-6">
         <div>
           <label class="mr-1">Gọi điện: </label>
           <span class="text-danger" *ngIf="productForm.get('callable').hasError('required') &&
@@ -77,9 +74,9 @@
           <label class="mr-1">Loại sản phẩm: </label>
           <span class="text-danger" *ngIf="productForm.get('category').hasError('required') &&
               (productForm.get('category').dirty || productForm.get('category').touched)">
-                Không được để trống
+                        Không được để trống
               </span>
-          <select formControlName="category" [compareWith]="compareObjects">
+          <select formControlName="category">
             <option value="">chọn loại sản phẩm</option>
             <option [ngValue]="category" *ngFor="let category of categoryList">{{category.name}}</option>
           </select>
@@ -108,27 +105,27 @@
               </span>
           <input type="number" formControlName="quantity">
         </div>
-      </div>
-      <div class="col-md-12">
-        <label class="mr-1">Hình ảnh mô tả: </label>
-        <span class="text-danger" *ngIf="isExits == true">
+        <div>
+          <label class="mr-1">Hình ảnh mô tả: </label>
+          <span class="text-danger" *ngIf="isExits == true">
                 Không được để trống
           </span>
-        <span class="text-danger" *ngIf="checkImgSize == true">
+          <span class="text-danger" *ngIf="checkImgSize == true">
                 Dung lượng ảnh quá lớn
           </span>
-        <span class="text-danger" *ngIf="regexImg == true">
+          <span class="text-danger" *ngIf="regexImg == true">
                 File sai định dạng
           </span>
-        <div>
-          <label for="file-upload" class="custom-file-upload center-box float-left">
-            <i class="fa-solid fa-camera"></i>
-          </label>
-          <input disabled class="customer-url float-left border-left-0" [value]="url">
-          <input id="file-upload" type="file" hidden (change)="onFileSelected($event)">
+          <div>
+            <label for="file-upload" class="custom-file-upload center-box float-left">
+              <i class="fa-solid fa-camera"></i>
+            </label>
+            <input disabled class="customer-url float-left border-left-0" [value]="url">
+            <input id="file-upload" type="file" hidden (change)="onFileSelected($event)">
+          </div>
         </div>
       </div>
-      <div class="col-md-12 center-box" style="padding-bottom: 25px">
+      <div class="col-md-12" style="padding-bottom: 25px">
         &nbsp;<img style="max-width: 100%" class="preview-img rounded img-fit" [src]="url" *ngIf="url" alt="">
       </div>
       <div class="col-md-4">
