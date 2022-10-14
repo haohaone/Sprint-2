@@ -1,17 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../node_modules/ngx-toastr/toastr.css";
 .icon-right{
-  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  background: #4135d6;
+  border-radius: 25px;
+  pointer-events: none;
+  box-shadow: 0 0 30px #4135d658;
+  color: white;
   font-size: 25px;
-  font-weight: bold;
-  height: 50px;
-  width: 50px;
+  font-weight: 500;
   border: 0;
-  position: absolute;
   bottom: 0;
   right: 0;
   margin: 10px;
+  position: fixed;
 }
+
 
 .center-box {
   display: flex;
@@ -25,14 +30,10 @@
   justify-content: space-around;
 }
 
-.delete {
-  background-color: #f0d43a;
-  font-weight: 500;
-  position: fixed;
+.space-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.delete:hover {
-  background-color: #007bff;
-  color: white;
-}
 

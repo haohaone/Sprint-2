@@ -17,8 +17,16 @@
               <label>Mật khẩu: </label>
               <input type="password" name="password" placeholder="mật khẩu" formControlName="password">
             </div>
-            <div class="d-flex ">
-              <button type="button" (click)="submit()">
+            <div class="d-flex space-between">
+              <button class="fb border-0 btn btn-outline-info" (click)="signInWithFB()">
+                <div><i class="fa-brands fa-facebook-f"></i></div>
+              </button>
+
+              <button class="gg border-0 btn btn-outline-info" (click)="signInWithGg()">
+                <div><i class="fa-brands fa-google"></i></div>
+              </button>
+
+              <button class="lg btn" type="button" (click)="submit()">
                 Đăng nhập
               </button>
             </div>

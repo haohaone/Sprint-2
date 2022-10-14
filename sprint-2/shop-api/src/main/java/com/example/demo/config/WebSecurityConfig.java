@@ -51,8 +51,29 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.cors().and().csrf().disable().
                 authorizeRequests().antMatchers(
-                "/**"
-        ).permitAll()
+                "/categoryList",
+                "/findById/**",
+                "/product/**",
+                "/cart",
+                "/login",
+                "/loginWithFb"
+        ).permitAll();
+
+        httpSecurity.cors().and().csrf().disable().authorizeRequests()
+                .antMatchers(
+                        "/update/**",
+                        "/addNew/**",
+                        "/delete/**",
+                        "/statistics/week",
+                        "/statistics/month",
+                        "/statistics/year"
+                ).hasAnyAuthority("ADMIN")
+                .antMatchers(
+                        "/transaction",
+                        "/get-transaction",
+                        "/order",
+                        "/user-information/**"
+                ).hasAnyAuthority("ADMIN", "MEMBER")
                 .anyRequest().authenticated()
                 .and().exceptionHandling()
                 .authenticationEntryPoint(jwtEntryPoint)

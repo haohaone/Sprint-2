@@ -38,7 +38,7 @@ public class RoleServiceImpl implements IRoleService {
      */
     @Override
     public void addNewCustomerUserRole(String username) {
-        roleRepository.addNewUserRole(username, 3);
+        roleRepository.addNewUserRole(username, 2);
     }
 
     /**
@@ -48,6 +48,6 @@ public class RoleServiceImpl implements IRoleService {
      */
     @Override
     public void addNewEmployeeUserRole(String username) {
-        roleRepository.addNewUserRole(username, 2);
+        roleRepository.addNewUserRole(username, 1);
     }
 }

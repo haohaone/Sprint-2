@@ -29,12 +29,12 @@ public class ProductController {
         return new ResponseEntity<>(productService.productList(category, name, price, limit * 4), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/findById/{id}")
     public ResponseEntity<?> findById(@PathVariable("id") Integer id) {
         return new ResponseEntity<>(productService.findByID(id), HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") Integer id) {
         Product product = productService.findByID(id);
         if (product == null) {
@@ -45,7 +45,7 @@ public class ProductController {
         }
     }
 
-    @PatchMapping("/{id}")
+    @PatchMapping("/update/{id}")
     public ResponseEntity<?> update(@Valid @RequestBody ProductDto productDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -62,7 +62,7 @@ public class ProductController {
         return new ResponseEntity<>(categoryService.findAll(), HttpStatus.OK);
     }
 
-    @PatchMapping("")
+    @PatchMapping("/update")
     public ResponseEntity<?> updateProduct(@RequestBody ProductDto productDto, BindingResult bindingResult){
         if (bindingResult.hasErrors()){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -73,7 +73,7 @@ public class ProductController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PostMapping("")
+    @PostMapping("/addNew")
     public ResponseEntity<?> addNew(@RequestBody ProductDto productDto, BindingResult bindingResult){
         if (bindingResult.hasErrors()){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

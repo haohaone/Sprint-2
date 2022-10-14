@@ -9,6 +9,7 @@
                 <div class="m-b-25">
                   <img *ngIf="customer.gender == 0" src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius" alt="User-Profile-Image">
                   <img *ngIf="customer.gender == 1"  src="https://img.icons8.com/bubbles/100/000000/brown-pigtail-hair-lady.png" class="img-radius" alt="User-Profile-Image"/>
+                  <img *ngIf="customer.gender == null"  src="https://img.icons8.com/bubbles/100/000000/help.png" class="img-radius" alt="User-Profile-Image"/>
                 </div>
                 <p class="f-w-600">{{customer.name}}</p>
                 <p>{{customer.appUser.username}}</p>

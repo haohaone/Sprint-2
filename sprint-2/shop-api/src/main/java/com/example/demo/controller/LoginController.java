@@ -55,4 +55,25 @@ public class LoginController {
         jwtResponse.setErrorStatus(false);
         return ResponseEntity.ok(jwtResponse);
     }
+
+    @PostMapping(value = "/loginWithFb")
+    public ResponseEntity<?> loginWithFb(@RequestBody Customer customerDto){
+        if (!userService.existsByUsername(customerDto.getAppUser().getUsername())){
+            customerService.addNew(customerDto);
+        }
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(customerDto.getAppUser().getUsername(), customerDto.getAppUser().getPassword()));
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        String token = jwtProvider.createToken(authentication);
+        UserPrinciple userPrinciple = (UserPrinciple) authentication.getPrincipal();
+
+        JwtResponse jwtResponse = new JwtResponse();
+        jwtResponse.setMessage("Đăng nhập thành công");
+        jwtResponse.setRoles(userPrinciple.getAuthorities());
+        jwtResponse.setToken(token);
+        Optional<Customer> customer = customerService.findCustomerByUserName(customerDto.getAppUser().getUsername());
+        jwtResponse.setCustomer(customer.get());
+        jwtResponse.setErrorStatus(false);
+        return ResponseEntity.ok(jwtResponse);
+    }
 }

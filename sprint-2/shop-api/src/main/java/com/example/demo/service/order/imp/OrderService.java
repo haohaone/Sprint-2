@@ -39,7 +39,8 @@ public class OrderService implements IOrderService {
             order = new Order(productDto.getQuantityOrder(), transaction, product);
             oderRepository.save(order);
         }
-
-        mailService.sendMail(transaction.getCustomer().getEmail(), transaction, productDtoList);
+        if (transaction.getCustomer().getEmail() != null){
+            mailService.sendMail(transaction.getCustomer().getEmail(), transaction, productDtoList);
+        }
     }
 }

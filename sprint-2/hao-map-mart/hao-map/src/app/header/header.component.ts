@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ToastrService} from "ngx-toastr";
 import {Router} from "@angular/router";
 import {ShareDataService} from "../service/share-data.service";
+import {SocialAuthService} from "angularx-social-login";
 
 @Component({
   selector: 'app-header',
@@ -14,6 +15,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(private toastService: ToastrService,
               private router: Router,
+              private authService: SocialAuthService,
               private shareDataService: ShareDataService) {
       this.shareDataService.getClickEvent().subscribe(
         ()=> {this.ngOnInit()}
@@ -32,7 +34,7 @@ export class HeaderComponent implements OnInit {
     localStorage.clear();
     this.ngOnInit();
     this.shareDataService.sendClickEvent();
-    this.router.navigateByUrl('/login')
+    this.router.navigateByUrl('/login');
     this.toastService.success('Đã đăng xuất');
   }
 }

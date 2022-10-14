@@ -1,0 +1,13 @@
+.lg{
+  box-shadow: 0 0 30px rgba(245, 224, 36, 0.35);
+}
+
+.fb {
+  background: #4135d6;
+  box-shadow: 0 0 30px #4135d658;
+}
+
+.gg{
+  background: #ec1d23;
+  box-shadow: 0 0 30px rgba(245, 36, 41, 0.35);
+}

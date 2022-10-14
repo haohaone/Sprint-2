@@ -25,7 +25,14 @@ import {AngularFireModule} from "@angular/fire";
 import {AngularFireStorage} from "@angular/fire/storage";
 import { environment } from 'src/environments/environment';
 import { ChartComponent } from './product/chart/chart.component';
-
+import {
+  SocialAuthServiceConfig,
+  SocialAuthService,
+  GoogleLoginProvider
+} from 'angularx-social-login';
+import {
+  FacebookLoginProvider,
+} from 'angularx-social-login';
 
 @NgModule({
   declarations: [
@@ -62,7 +69,29 @@ import { ChartComponent } from './product/chart/chart.component';
     AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
   providers: [
-    AngularFireStorage
+    AngularFireStorage,
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('1258776837996802'),
+          },
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '688050415689-gsdr1l119drbptjfh01oe35eln8400cd.apps.googleusercontent.com'
+            )
+          }
+        ],
+        onError: (err) => {
+          console.error(err);
+        },
+      } as SocialAuthServiceConfig,
+    },
+    SocialAuthService,
   ],
   bootstrap: [AppComponent]
 })

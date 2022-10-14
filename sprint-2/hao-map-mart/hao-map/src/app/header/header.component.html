@@ -23,8 +23,11 @@
               <a class="nav-link" routerLink="/speaker">Loa Bluetooth</a>
             </li>
           </ul>
-          <div style="width: 9%">
-            <span class="font-weight-bold" *ngIf="username !== null">{{username}}</span>
+          <div style="width: 9%" class="center-box">
+            <span class="font-weight-bold max-size" *ngIf="username !== null"
+                  data-toggle="tooltip" data-placement="bottom" title="{{username}}">
+              {{username}}
+            </span>
           </div>
           <div class="user_option-box " style="width: 8%">
             <a (click)="logout()" *ngIf="username !== null"

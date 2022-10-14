@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from "rxjs";
 import {Product} from "../model/product";
 import {Category} from "../model/category";
@@ -10,6 +10,8 @@ import {Category} from "../model/category";
 
 export class ProductService {
   API_URL = 'http://localhost:8080/'
+  header = new HttpHeaders().set('Authorization', sessionStorage.getItem('token'));
+
 
   constructor(private http: HttpClient) {
   }
@@ -39,7 +41,7 @@ export class ProductService {
   }
 
   public findByID(id: number): Observable<Product> {
-    return this.http.get<Product>(this.API_URL + id)
+    return this.http.get<Product>(this.API_URL + "findById/" + id)
   }
 
   public getCart(storageList: any): Observable<Product[]> {
@@ -47,15 +49,15 @@ export class ProductService {
   }
 
   public delete(id: number): Observable<void> {
-    return this.http.delete<void>(this.API_URL + id);
+    return this.http.delete<void>(this.API_URL + "delete/" + id, {headers: this.header});
   }
 
   public update(product: Product): Observable<void> {
-    return this.http.patch<void>(this.API_URL, product);
+    return this.http.patch<void>(this.API_URL + "update", product, {headers: this.header});
   }
 
   public addNew(product: Product): Observable<void> {
-    return this.http.post<void>(this.API_URL, product);
+    return this.http.post<void>(this.API_URL + "addNew", product, {headers: this.header});
   }
 
   public getAllCategory(): Observable<any> {

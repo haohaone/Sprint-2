@@ -80,11 +80,11 @@ export class CartComponent implements OnInit {
         this.checkLoading = false;
         this.transactionService.saveTransaction(transaction).subscribe(
           value => {},
-          error => {},
+          error => {this.toast.error('Thanh toán không thành công')},
           () => {
             this.transactionService.addProductToOrder(this.productList).subscribe(
               value => {},
-              error => {},
+              error => {this.toast.error('Thanh toán không thành công')},
               () => {
                 localStorage.clear();
                 this.productList = [];

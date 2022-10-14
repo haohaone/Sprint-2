@@ -22,4 +22,5 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     List<Product> productList(@Param("category") Integer category,
                               @Param("name") String name,
                               @Param("limit") Integer limit);
+
 }

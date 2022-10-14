@@ -9,41 +9,16 @@
                 <div class="m-b-25">
                   <img src="https://img.icons8.com/bubbles/100/000000/analytics.png"/>
                 </div>
-                <p class="f-w-600">{{customer.name}}</p>
-                <p>{{customer.appUser.username}}</p>
-                <i class="fa-solid fa-pen-to-square"></i>
+                <button class="chart btn btn-outline-info" (click)="createLineChartWeek()">Trong 7 ngày qua</button>
+                <button class="chart btn btn-outline-info" (click)="createLineChartMonth()">Trong tuần qua</button>
+                <button class="chart btn btn-outline-info" (click)="createLineChartYear()">Trong năm qua</button>
               </div>
             </div>
             <div class="col-sm-8">
               <div class="card-block">
-                <p class="m-b-20 p-b-5 b-b-default f-w-600">THÔNG TIN NGƯỜI DÙNG</p>
-                <div class="row">
-                  <div class="col-sm-6">
-                    <p class="m-b-10 f-w-600">Email</p>
-                    <h6 class="text-muted m-b-20 f-w-400">{{customer.email}}</h6>
-                  </div>
-                  <div class="col-sm-6">
-                    <p class="m-b-10 f-w-600">Mã tài khoản</p>
-                    <h6 class="text-muted m-b-20 f-w-400">{{customer.id}}</h6>
-                  </div>
-                  <div class="col-sm-6">
-                    <p class="m-b-10 f-w-600">Số điện thoại</p>
-                    <h6 class="text-muted m-b-20 f-w-400">{{customer.phoneNumber}}</h6>
-                  </div>
-                  <div class="col-sm-6">
-                    <p class="m-b-10 f-w-600">Giới tính</p>
-                    <h6 class="text-muted m-b-20 f-w-400" *ngIf="customer.gender == 0">Nam</h6>
-                    <h6 class="text-muted m-b-20 f-w-400" *ngIf="customer.gender == 1">Nữ</h6>
-                  </div>
-                  <div class="col-sm-6">
-                    <p class="m-b-10 f-w-600">Địa chỉ</p>
-                    <h6 class="text-muted m-b-20 f-w-400" >{{customer.address}}</h6>
-                  </div>
-                  <div class="col-sm-6">
-                    <p class="m-b-10 f-w-600">Loại tài khoản</p>
-                    <h6 class="text-muted m-b-20 f-w-400" >{{customer.appUser.appRoles[0].name}}</h6>
-                  </div>
-                </div>
+                <p class="m-b-20 p-b-5 b-b-default f-w-600">{{tittle}}</p>
+                <canvas class="row" id="myChart">
+                </canvas>
               </div>
             </div>
           </div>
