@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ShareDataService} from "./service/share-data.service";
+import { environment } from 'src/environments/environment';
+import firebase from "firebase";
 
 @Component({
   selector: 'app-root',
@@ -11,6 +13,7 @@ export class AppComponent implements OnInit {
   quantityProduct = 0;
 
   constructor(private shareDataService: ShareDataService) {
+    firebase.initializeApp(environment.firebaseConfig);
     this.shareDataService.getClickEvent().subscribe(
       ()=> {this.ngOnInit()}
     )

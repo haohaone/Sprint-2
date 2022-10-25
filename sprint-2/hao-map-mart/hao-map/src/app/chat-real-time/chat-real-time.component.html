@@ -1,0 +1,98 @@
+<div class="page-content page-container" id="page-content" style="background: #eeeeee">
+  <div class="padding">
+    <main class="content">
+      <div class="container p-0">
+
+        <div class="card">
+          <div class="row g-0">
+            <div class="col-12 col-lg-5 col-xl-3 border-right">
+
+              <div class="px-4 d-none d-md-block">
+                <div class="d-flex align-items-center">
+                  <div class="flex-grow-1">
+                    <input type="text" class="form-control my-3" placeholder="Search...">
+                  </div>
+                </div>
+              </div>
+
+              <a (click)="joinRoomChat(user)" *ngFor="let user of appUserList" class="btn list-group-item list-group-item-action border-0">
+                <div class="d-flex align-items-start">
+                  <img *ngIf="user.gender === 1" src="https://img.icons8.com/bubbles/100/000000/long-brunette-hair-lady.png" class="rounded-circle mr-1" alt="Vanessa Tucker" width="40" height="40">
+                  <img *ngIf="user.gender === 0" src="https://img.icons8.com/bubbles/100/000000/user.png" class="rounded-circle mr-1" alt="Vanessa Tucker" width="40" height="40">
+                  <img *ngIf="user.gender != 1 && user.gender != 0" src="https://img.icons8.com/bubbles/100/000000/question-mark.png" class="rounded-circle mr-1" alt="Vanessa Tucker" width="40" height="40">
+                  <div class="flex-grow-1 ml-3 max-size">
+                    {{user.username}}
+                    <div class="small pl-1" *ngIf="user.status === 'online'">
+                      <span class="fas fa-circle chat-online"></span>
+                      Online
+                    </div>
+                    <div class="small pl-1" *ngIf="user.status === 'offline'">
+                      <span class="fas fa-circle chat-offline"></span>
+                      Offline
+                    </div>
+                  </div>
+                </div>
+              </a>
+
+              <hr class="d-block d-lg-none mt-1 mb-0">
+            </div>
+            <div class="col-12 col-lg-7 col-xl-9">
+<!--              <div *ngIf="anotherUser !== null" class="py-2 px-4 border-bottom d-none d-lg-block">-->
+<!--                <div class="d-flex align-items-center py-1">-->
+<!--                  <div class="position-relative">-->
+<!--                    <img *ngIf="anotherUser.gender === 1" src="https://img.icons8.com/bubbles/100/000000/long-brunette-hair-lady.png" class="rounded-circle mr-1" alt="Vanessa Tucker" width="40" height="40">-->
+<!--                    <img *ngIf="anotherUser.gender === 0" src="https://img.icons8.com/bubbles/100/000000/user.png" class="rounded-circle mr-1" alt="Vanessa Tucker" width="40" height="40">-->
+<!--                    <img *ngIf="anotherUser.gender != 1 && user.gender != 0" src="https://img.icons8.com/bubbles/100/000000/question-mark.png" class="rounded-circle mr-1" alt="Vanessa Tucker" width="40" height="40">-->
+<!--                  </div>-->
+<!--                  <div class="flex-grow-1 pl-3">-->
+<!--                    <strong>{{anotherUser.username}}</strong>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+
+              <div class="position-relative">
+                <div class="chat-messages p-4" style="height: 500px">
+                  <div *ngFor="let chat of chats">
+                    <div *ngIf="chat.username == myAccount" class="chat-message-right pb-4">
+                      <div>
+                        <img *ngIf="myGender == 1" src="https://img.icons8.com/bubbles/100/000000/long-brunette-hair-lady.png" class="rounded-circle mr-1" alt="Vanessa Tucker" width="40" height="40">
+                        <img *ngIf="myGender == 0" src="https://img.icons8.com/bubbles/100/000000/user.png" class="rounded-circle mr-1" alt="Vanessa Tucker" width="40" height="40">
+                        <img *ngIf="myGender != 1 && anotherAccountGender != 0" src="https://img.icons8.com/bubbles/100/000000/question-mark.png" class="rounded-circle mr-1" alt="Vanessa Tucker" width="40" height="40">
+                        <div class="text-muted small text-nowrap mt-2">{{chat.date | date: 'HH:mm dd/MM'}}</div>
+                      </div>
+                      <div class="flex-shrink-1 bg-me rounded py-2 px-3 mr-3">
+                        <div class="font-weight-bold mb-1">Bạn</div>
+                        {{chat.message}}
+                      </div>
+                    </div>
+
+                    <div *ngIf="chat.username == anotherAccount"  class="chat-message-left pb-4">
+                      <div>
+                        <img *ngIf="anotherAccountGender == 1" src="https://img.icons8.com/bubbles/100/000000/long-brunette-hair-lady.png" class="rounded-circle mr-1" alt="Vanessa Tucker" width="40" height="40">
+                        <img *ngIf="anotherAccountGender == 0" src="https://img.icons8.com/bubbles/100/000000/user.png" class="rounded-circle mr-1" alt="Vanessa Tucker" width="40" height="40">
+                        <img *ngIf="anotherAccountGender != 1 && anotherAccountGender != 0" src="https://img.icons8.com/bubbles/100/000000/question-mark.png" class="rounded-circle mr-1" alt="Vanessa Tucker" width="40" height="40">
+                        <div class="text-muted small text-nowrap mt-2">{{chat.date | date: 'HH:mm dd/MM/yyyy'}}</div>
+                      </div>
+                      <div class="flex-shrink-1 bg-another rounded py-2 px-3 ml-3">
+                        <div class="font-weight-bold mb-1">{{chat.username}}</div>
+                        {{chat.message}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex-grow-0 py-3 px-4 border-top">
+                <form [formGroup]="chatForm" class="input-group">
+                  <input type="text" class="form-control" placeholder="Nhập tin nhắn" formControlName="message">
+                  <button class="btn btn-primary" (click)="sendMail()">Gửi</button>
+                </form>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

@@ -14,6 +14,7 @@ import {UserInformationComponent} from "./user-information/user-information.comp
 import {AdminMemberRoleService} from "./service/admin-member-role.service";
 import {AddNewComponent} from "./product/add-new/add-new.component";
 import {ChartComponent} from "./product/chart/chart.component";
+import {ChatRealTimeComponent} from "./chat-real-time/chat-real-time.component";
 
 
 const routes: Routes = [
@@ -28,7 +29,8 @@ const routes: Routes = [
   {path: 'edit-product/:id', component: EditComponent, canActivate: [AdminRoleService]},
   {path: 'add-new', component: AddNewComponent, canActivate: [AdminRoleService]},
   {path: 'chart', component: ChartComponent, canActivate: [AdminRoleService]},
-  {path: 'user-information', component: UserInformationComponent, canActivate: [AdminMemberRoleService]}
+  {path: 'user-information', component: UserInformationComponent, canActivate: [AdminMemberRoleService]},
+  {path: 'chat', component: ChatRealTimeComponent, canActivate: [AdminMemberRoleService]}
 ];
 
 @NgModule({

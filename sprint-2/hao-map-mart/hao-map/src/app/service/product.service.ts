@@ -41,11 +41,11 @@ export class ProductService {
   }
 
   public findByID(id: number): Observable<Product> {
-    return this.http.get<Product>(this.API_URL + "findById/" + id)
+    return this.http.get<Product>(this.API_URL + "findById/" + id, {headers: this.header})
   }
 
   public getCart(storageList: any): Observable<Product[]> {
-    return this.http.post<Product[]>(this.API_URL + 'cart', storageList)
+    return this.http.post<Product[]>(this.API_URL + 'cart', storageList, {headers: this.header})
   }
 
   public delete(id: number): Observable<void> {

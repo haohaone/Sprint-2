@@ -108,6 +108,7 @@ export class AddNewComponent implements OnInit {
 
     // tslint:disable-next-line:variable-name
     reader.onload = (_event) => {
+      console.log(reader.result);
       this.msg = '';
       this.url = reader.result;
     };

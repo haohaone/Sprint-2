@@ -1,14 +1,11 @@
 <app-header></app-header>
 <router-outlet></router-outlet>
 <app-footer></app-footer>
-<div class="social-buttons">
-  <button *ngIf="quantityProduct !== 0" class="cart icon-right btn space-around delete rung" routerLink="/cart">
-    <i class="fa-sharp fa-solid fa-cart-shopping" style="font-size: 18px"></i>
-    <div>{{quantityProduct}}</div>
-    <div class="bg"></div>
-  </button>
-  <button *ngIf="quantityProduct === 0" class="cart icon-right btn center-box  delete" routerLink="/cart">
-    <i class="fa-sharp fa-solid fa-cart-shopping"></i>
-    <div class="bg"></div>
-  </button>
-</div>
+<button type="button" *ngIf="quantityProduct !== 0" class="cart icon-right btn space-around delete rung"
+        routerLink="/cart">
+  <i class="fa-sharp fa-solid fa-cart-shopping" style="font-size: 18px"></i>
+  <div>{{quantityProduct}}</div>
+</button>
+<button type="button" *ngIf="quantityProduct === 0" class="cart icon-right btn center-box  delete" routerLink="/cart">
+  <i class="fa-sharp fa-solid fa-cart-shopping"></i>
+</button>

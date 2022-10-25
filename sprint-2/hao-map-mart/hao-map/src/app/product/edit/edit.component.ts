@@ -74,7 +74,7 @@ export class EditComponent implements OnInit {
     if (this.selectedFile.size > 9000000) {
       this.checkImgSize = true;
       this.regexImg = false;
-      this.regexImg = false;
+      this.isExits = false;
       return;
     }
 

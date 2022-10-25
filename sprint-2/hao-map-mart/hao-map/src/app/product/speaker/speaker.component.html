@@ -19,7 +19,7 @@
       <div class="col-sm-6 col-xl-3 center-box w-100">
         &nbsp;
       </div>
-      <div class="col-sm-6 col-xl-3 center-box w-100">
+      <div class="col-sm-6 col-xl-3 center-box w-100"  *ngIf="role === 'ADMIN'">
         <div class="btn-box m-0 w-100">
           <a class="w-100 text-center" routerLink="/add-new">
             Thêm mới

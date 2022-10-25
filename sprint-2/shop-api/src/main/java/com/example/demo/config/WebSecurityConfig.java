@@ -55,6 +55,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/findById/**",
                 "/product/**",
                 "/cart",
+                "/cart/**",
                 "/login",
                 "/loginWithFb"
         ).permitAll();

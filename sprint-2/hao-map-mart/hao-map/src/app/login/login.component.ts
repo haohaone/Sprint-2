@@ -9,7 +9,8 @@ import {GoogleLoginProvider, SocialAuthService} from 'angularx-social-login';
 import { FacebookLoginProvider } from 'angularx-social-login';
 import {Customer} from "../model/customer";
 import firebase from "firebase";
-import GoogleAuthProvider = firebase.auth.GoogleAuthProvider;
+import {AppUser} from "../model/app-user";
+import {snapshotToArray} from "../header/header.component";
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,7 @@ import GoogleAuthProvider = firebase.auth.GoogleAuthProvider;
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  ref = firebase.database().ref('users/');
 
   constructor(private loginService: LoginService,
               private router: Router,
@@ -38,11 +40,32 @@ export class LoginComponent implements OnInit {
     const login = this.loginForm.value;
     this.loginService.requestLogin(login).subscribe(
       value => {
-        console.log(value);
         sessionStorage.setItem('username', login.username);
         const tokenStr = 'Bearer ' + value.token;
         sessionStorage.setItem('token', tokenStr);
         sessionStorage.setItem('roles', value.roles[0].authority);
+        sessionStorage.setItem('gender', value.customer.gender);
+        this.ref.orderByChild('username').equalTo(login.username).on('value', snapshot => {
+          // ref = firebase.database().ref('users/');
+          if (!snapshot.exists()) {
+            const newUser = firebase.database().ref('users/').push();
+            const userApp: AppUser = {
+              username: login.username,
+              appRoles: {
+                name: value.roles[0].authority
+              },
+              status: 'online',
+              gender: value.customer.gender
+            }
+            newUser.set(userApp);
+          }else {
+            const user = snapshotToArray(snapshot);
+            if (user !== undefined) {
+              const userRef = firebase.database().ref('users/' + user[0].key);
+              userRef.update({status: 'online'});
+            }
+          }
+        });
         history.back();
         this.shareDataService.sendClickEvent();
         this.toastService.success('Đăng nhập thành công')
@@ -62,6 +85,7 @@ export class LoginComponent implements OnInit {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
     this.authService.authState.subscribe(
       user => {
+        console.log(user)
         const customer: Customer = {
           name: user.name,
           appUser: {
@@ -75,6 +99,27 @@ export class LoginComponent implements OnInit {
             const tokenStr = 'Bearer ' + value.token;
             sessionStorage.setItem('token', tokenStr);
             sessionStorage.setItem('roles', value.roles[0].authority);
+            sessionStorage.setItem('gender', value.customer.gender);
+            this.ref.orderByChild('username').equalTo(user.email).once('value', snapshot => {
+              if (!snapshot.exists()) {
+                const newUser = firebase.database().ref('users/').push();
+                const userApp: AppUser = {
+                  username: user.email,
+                  appRoles: {
+                    name: value.roles[0].authority
+                  },
+                  status: 'online',
+                  gender: value.customer.gender
+                }
+                newUser.set(userApp);
+              }else {
+                const user = snapshotToArray(snapshot);
+                if (user !== undefined) {
+                  const userRef = firebase.database().ref('users/' + user[0].key);
+                  userRef.update({status: 'online'});
+                }
+              }
+            });
             history.back();
             this.shareDataService.sendClickEvent();
             this.toastService.success('Đăng nhập thành công')
