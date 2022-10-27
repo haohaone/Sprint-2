@@ -40,7 +40,10 @@ public class UserServiceImpl implements IUserService {
      */
     @Override
     public Boolean existsByUsername(String username) {
-        return username.equals(userRepository.existsByUsername(username));
+        if (userRepository.existsByUsername(username) == null) {
+            return false;
+        }
+        return username.toLowerCase().equals(userRepository.existsByUsername(username).toLowerCase());
     }
 
     /**

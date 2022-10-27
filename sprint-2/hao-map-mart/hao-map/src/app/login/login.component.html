@@ -18,6 +18,9 @@
               <input type="password" name="password" placeholder="mật khẩu" formControlName="password">
             </div>
             <div class="d-flex space-between">
+              <button class="lg btn" type="button" (click)="submit()">
+                Đăng nhập
+              </button>
               <button class="fb border-0 btn btn-outline-info" (click)="signInWithFB()">
                 <div><i class="fa-brands fa-facebook-f"></i></div>
               </button>
@@ -25,12 +28,11 @@
               <button class="gg border-0 btn btn-outline-info" (click)="signInWithGg()">
                 <div><i class="fa-brands fa-google"></i></div>
               </button>
-
-              <button class="lg btn" type="button" (click)="submit()">
-                Đăng nhập
-              </button>
             </div>
           </form>
+          <div class="center-box mt-4">
+            <a routerLink="/sign-up">Đăng ký tài khoản mới</a>
+          </div>
         </div>
       </div>
       <div class="col-md-6">

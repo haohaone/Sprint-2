@@ -107,9 +107,6 @@
         </div>
         <div>
           <label class="mr-1">Hình ảnh mô tả: </label>
-          <span class="text-danger" *ngIf="isExits == true">
-                Không được để trống
-          </span>
           <span class="text-danger" *ngIf="checkImgSize == true">
                 Dung lượng ảnh quá lớn
           </span>
@@ -133,7 +130,7 @@
       </div>
       <div class="col-md-4">
         <div class="float-right w-100">
-          <button class="w-100" type="button" (click)="submit()" [disabled]="productForm.invalid">
+          <button class="w-100" type="button" (click)="submit()">
             Thêm mới
           </button>
         </div>

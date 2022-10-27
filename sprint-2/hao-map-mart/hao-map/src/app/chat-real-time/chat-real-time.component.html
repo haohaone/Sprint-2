@@ -20,7 +20,7 @@
                   <img *ngIf="user.gender === 1" src="https://img.icons8.com/bubbles/100/000000/long-brunette-hair-lady.png" class="rounded-circle mr-1" alt="Vanessa Tucker" width="40" height="40">
                   <img *ngIf="user.gender === 0" src="https://img.icons8.com/bubbles/100/000000/user.png" class="rounded-circle mr-1" alt="Vanessa Tucker" width="40" height="40">
                   <img *ngIf="user.gender != 1 && user.gender != 0" src="https://img.icons8.com/bubbles/100/000000/question-mark.png" class="rounded-circle mr-1" alt="Vanessa Tucker" width="40" height="40">
-                  <div class="flex-grow-1 ml-3 max-size">
+                  <div class="flex-grow-1 ml-3 max-size" >
                     {{user.username}}
                     <div class="small pl-1" *ngIf="user.status === 'online'">
                       <span class="fas fa-circle chat-online"></span>
@@ -31,33 +31,36 @@
                       Offline
                     </div>
                   </div>
+                  <div *ngIf="notification.get(user.username) === 'have email'" class="text-danger rung">
+                    <i class="fa-solid fa-message"></i>
+                  </div>
                 </div>
               </a>
 
               <hr class="d-block d-lg-none mt-1 mb-0">
             </div>
             <div class="col-12 col-lg-7 col-xl-9">
-<!--              <div *ngIf="anotherUser !== null" class="py-2 px-4 border-bottom d-none d-lg-block">-->
-<!--                <div class="d-flex align-items-center py-1">-->
-<!--                  <div class="position-relative">-->
-<!--                    <img *ngIf="anotherUser.gender === 1" src="https://img.icons8.com/bubbles/100/000000/long-brunette-hair-lady.png" class="rounded-circle mr-1" alt="Vanessa Tucker" width="40" height="40">-->
-<!--                    <img *ngIf="anotherUser.gender === 0" src="https://img.icons8.com/bubbles/100/000000/user.png" class="rounded-circle mr-1" alt="Vanessa Tucker" width="40" height="40">-->
-<!--                    <img *ngIf="anotherUser.gender != 1 && user.gender != 0" src="https://img.icons8.com/bubbles/100/000000/question-mark.png" class="rounded-circle mr-1" alt="Vanessa Tucker" width="40" height="40">-->
-<!--                  </div>-->
-<!--                  <div class="flex-grow-1 pl-3">-->
-<!--                    <strong>{{anotherUser.username}}</strong>-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--              </div>-->
+              <div *ngIf="appUserNow !== null" class="py-2 px-4 border-bottom d-none d-lg-block">
+                <div class="d-flex align-items-center py-1">
+                  <div class="position-relative">
+                    <img *ngIf="appUserNow.gender === 1" src="https://img.icons8.com/bubbles/100/000000/long-brunette-hair-lady.png" class="rounded-circle mr-1" alt="Vanessa Tucker" width="40" height="40">
+                    <img *ngIf="appUserNow.gender === 0" src="https://img.icons8.com/bubbles/100/000000/user.png" class="rounded-circle mr-1" alt="Vanessa Tucker" width="40" height="40">
+                    <img *ngIf="appUserNow.gender != 1 && appUserNow.gender != 0" src="https://img.icons8.com/bubbles/100/000000/question-mark.png" class="rounded-circle mr-1" alt="Vanessa Tucker" width="40" height="40">
+                  </div>
+                  <div class="flex-grow-1 pl-3">
+                    <strong>{{appUserNow.username}}</strong>
+                  </div>
+                </div>
+              </div>
 
               <div class="position-relative">
                 <div class="chat-messages p-4" style="height: 500px">
                   <div *ngFor="let chat of chats">
                     <div *ngIf="chat.username == myAccount" class="chat-message-right pb-4">
                       <div>
-                        <img *ngIf="myGender == 1" src="https://img.icons8.com/bubbles/100/000000/long-brunette-hair-lady.png" class="rounded-circle mr-1" alt="Vanessa Tucker" width="40" height="40">
-                        <img *ngIf="myGender == 0" src="https://img.icons8.com/bubbles/100/000000/user.png" class="rounded-circle mr-1" alt="Vanessa Tucker" width="40" height="40">
-                        <img *ngIf="myGender != 1 && anotherAccountGender != 0" src="https://img.icons8.com/bubbles/100/000000/question-mark.png" class="rounded-circle mr-1" alt="Vanessa Tucker" width="40" height="40">
+                        <img *ngIf="myGender === 1" src="https://img.icons8.com/bubbles/100/000000/long-brunette-hair-lady.png" class="rounded-circle mr-1" alt="Vanessa Tucker" width="40" height="40">
+                        <img *ngIf="myGender === 0" src="https://img.icons8.com/bubbles/100/000000/user.png" class="rounded-circle mr-1" alt="Vanessa Tucker" width="40" height="40">
+                        <img *ngIf="myGender !== 1 && myGender !== 0" src="https://img.icons8.com/bubbles/100/000000/question-mark.png" class="rounded-circle mr-1" alt="Vanessa Tucker" width="40" height="40">
                         <div class="text-muted small text-nowrap mt-2">{{chat.date | date: 'HH:mm dd/MM'}}</div>
                       </div>
                       <div class="flex-shrink-1 bg-me rounded py-2 px-3 mr-3">
@@ -71,7 +74,7 @@
                         <img *ngIf="anotherAccountGender == 1" src="https://img.icons8.com/bubbles/100/000000/long-brunette-hair-lady.png" class="rounded-circle mr-1" alt="Vanessa Tucker" width="40" height="40">
                         <img *ngIf="anotherAccountGender == 0" src="https://img.icons8.com/bubbles/100/000000/user.png" class="rounded-circle mr-1" alt="Vanessa Tucker" width="40" height="40">
                         <img *ngIf="anotherAccountGender != 1 && anotherAccountGender != 0" src="https://img.icons8.com/bubbles/100/000000/question-mark.png" class="rounded-circle mr-1" alt="Vanessa Tucker" width="40" height="40">
-                        <div class="text-muted small text-nowrap mt-2">{{chat.date | date: 'HH:mm dd/MM/yyyy'}}</div>
+                        <div class="text-muted small text-nowrap mt-2">{{chat.date | date: 'HH:mm dd/MM'}}</div>
                       </div>
                       <div class="flex-shrink-1 bg-another rounded py-2 px-3 ml-3">
                         <div class="font-weight-bold mb-1">{{chat.username}}</div>

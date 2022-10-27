@@ -24,7 +24,7 @@ public class Customer {
     @Column(name = "gender", columnDefinition = "BIT(1)")
     private Integer gender;
     @Column(name = "status")
-    private int status;
+    private int status = 0;
     @Column(name = "email")
     private String email;
 

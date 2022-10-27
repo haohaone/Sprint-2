@@ -1,0 +1,130 @@
+<section class="contact_section layout_padding">
+  <div class="container">
+    <h2 style="text-align: center; font-weight: bold">
+      THÊM MỚI TÀI KHOẢN
+    </h2>
+    <form [formGroup]="customerForm" class="row">
+      <div class="col-md-6">
+        <div class="form_container" style="float: top">
+          <div>
+            <label class="mr-1">Tên khách hàng: </label>
+            <span class="text-danger" *ngIf="customerForm.get('name').hasError('pattern') &&
+              (customerForm.get('name').dirty || customerForm.get('name').touched)">
+                Sai định dạng hoặc tên
+              </span>
+            <span class="text-danger" *ngIf="customerForm.get('name').hasError('required') &&
+              (customerForm.get('name').dirty || customerForm.get('name').touched)">
+                Không được để trống
+              </span>
+            <input type="text" formControlName="name">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div>
+          <label class="mr-1">Email: </label>
+          <span class="text-danger" *ngIf="customerForm.get('email').hasError('pattern') &&
+              (customerForm.get('email').dirty || customerForm.get('email').touched)">
+            Sai định dạng email
+          </span>
+          <span class="text-danger" *ngIf="customerForm.get('email').hasError('required') &&
+              (customerForm.get('email').dirty || customerForm.get('email').touched)">
+                Không được để trống
+          </span>
+          <input type="text" formControlName="email">
+
+        </div>
+
+      </div>
+      <div class="col-md-6">
+        <div>
+          <label class="mr-1">Giới tính: </label>
+          <span class="text-danger" *ngIf="customerForm.get('gender').hasError('required') &&
+              (customerForm.get('gender').dirty || customerForm.get('gender').touched)">
+            Không được để trống
+          </span>
+          <select formControlName="gender">
+            <option value="">Chọn giới tính ...</option>
+            <option value="0">Nam</option>
+            <option value="1">Nữ</option>
+          </select>
+        </div>
+        <div>
+          <label class="mr-1">Địa chỉ: </label>
+          <span class="text-danger" *ngIf="customerForm.get('address').hasError('required') &&
+              (customerForm.get('address').dirty || customerForm.get('address').touched)">
+            Không được để trống
+          </span>
+          <input type="text" formControlName="address">
+        </div>
+        <div>
+          <label class="mr-1">Mật khẩu: </label>
+          <span class="text-danger" *ngIf="customerForm.get('password').hasError('pattern') &&
+              (customerForm.get('password').dirty || customerForm.get('password').touched)">
+                Sai định dạng mật khẩu
+            </span>
+          <span class="text-danger" *ngIf="customerForm.get('password').hasError('required') &&
+              (customerForm.get('password').dirty || customerForm.get('password').touched)">
+                Không được để trống
+              </span>
+          <input type="password" formControlName="password">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div>
+          <label class="mr-1">Số điện thoại: </label>
+          <span class="text-danger" *ngIf="customerForm.get('phoneNumber').hasError('pattern') &&
+              (customerForm.get('phoneNumber').dirty || customerForm.get('phoneNumber').touched)">
+            Sai định dạng số điện thoại
+              </span>
+          <span class="text-danger" *ngIf="customerForm.get('phoneNumber').hasError('required') &&
+              (customerForm.get('phoneNumber').dirty || customerForm.get('phoneNumber').touched)">
+                Không được để trống
+              </span>
+          <input type="text" formControlName="phoneNumber">
+        </div>
+        <div>
+          <label class="mr-1">Tên đăng nhập: </label>
+          <span class="text-danger" *ngIf="customerForm.get('username').hasError('pattern') &&
+              (customerForm.get('username').dirty || customerForm.get('username').touched)">
+            Sai định dạng tài khoản
+          </span>
+          <span class="text-danger" *ngIf="customerForm.get('username').hasError('required') &&
+              (customerForm.get('username').dirty || customerForm.get('username').touched)">
+                Không được để trống
+          </span>
+          <span class="text-danger" *ngIf="isExitsUser">
+                Tài khoản đã tồn tại
+          </span>
+          <input type="text" formControlName="username" (change)="checkUserName($event.target.value)">
+
+        </div>
+        <div>
+          <label class="mr-1">Mật khẩu xác nhận: </label>
+          <span class="text-danger" *ngIf="customerForm.get('confirmPassword').hasError('required') &&
+              (customerForm.get('confirmPassword').dirty || customerForm.get('confirmPassword').touched)">
+            Không được để trống
+          </span>
+          <span class="text-danger" *ngIf="customerForm.hasError('notSame') &&
+              (customerForm.dirty || customerForm.touched)">
+            Không trùng khớp
+          </span>
+          <input type="password" formControlName="confirmPassword">
+        </div>
+      </div>
+      <div class="col-md-4">
+        &nbsp;
+      </div>
+      <div class="col-md-4">
+        <div class="float-right w-100">
+          <button class="w-100" type="button" (click)="submit()">
+            Chỉnh sửa
+          </button>
+        </div>
+      </div>
+      <div class="col-md-4">
+        &nbsp;
+      </div>
+    </form>
+  </div>
+</section>

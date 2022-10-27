@@ -8,6 +8,8 @@ export interface Customer {
   address?: string;
   gender?: number;
   email?: string;
+  username?: string;
+  password?: string;
   appUser?: AppUser;
   transactionList?: Transaction[];
 }

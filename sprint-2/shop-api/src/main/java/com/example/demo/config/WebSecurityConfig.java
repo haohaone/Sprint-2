@@ -57,13 +57,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/cart",
                 "/cart/**",
                 "/login",
-                "/loginWithFb"
+                "/loginWithFb",
+                "/checkUserName/**",
+                "/customer"
         ).permitAll();
 
         httpSecurity.cors().and().csrf().disable().authorizeRequests()
                 .antMatchers(
                         "/update/**",
-                        "/addNew/**",
+                        "/addNewByFb/**",
                         "/delete/**",
                         "/statistics/week",
                         "/statistics/month",

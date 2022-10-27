@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  API_URL: 'http://localhost:8080/',
   firebaseConfig: {
     apiKey: "AIzaSyC1060esdN8jnlojQ7h3db-iVtZkoMq9NY",
     authDomain: "chatbox-internet-service.firebaseapp.com",

@@ -3,13 +3,14 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from "rxjs";
 import {Product} from "../model/product";
 import {Category} from "../model/category";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class ProductService {
-  API_URL = 'http://localhost:8080/'
+  API_URL = `${environment.API_URL}`;
   header = new HttpHeaders().set('Authorization', sessionStorage.getItem('token'));
 
 

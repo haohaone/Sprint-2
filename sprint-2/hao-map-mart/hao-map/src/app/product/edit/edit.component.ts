@@ -44,9 +44,9 @@ export class EditComponent implements OnInit {
       callable: new FormControl('', Validators.required),
       countryOfOrigin: new FormControl('', Validators.required),
       color: new FormControl('', Validators.required),
-      price: new FormControl(0, [Validators.min(0), Validators.required]),
+      price: new FormControl('', [Validators.min(0), Validators.required]),
       url: new FormControl('', Validators.required),
-      quantity: new FormControl(0, [Validators.min(0), Validators.required]),
+      quantity: new FormControl('', [Validators.min(0), Validators.required]),
       category: new FormControl('', Validators.required),
       isDelete: new FormControl(0)
     })
@@ -100,40 +100,44 @@ export class EditComponent implements OnInit {
   }
 
   submit() {
-    if (this.selectedFile == null){
-      const prodcut = this.productForm.value;
-      this.productService.update(prodcut).subscribe(
-        value => {
-          this.toast.success('Chỉnh sửa mới thành công');
-          history.back();
-        },
-        error => {
-          this.toast.error('Chỉnh sửa thất bại')
-        }
-      )
+    if (this.productForm.invalid){
+      this.productForm.markAllAsTouched()
     }else {
-      const nameImg = this.getCurrentDateTime() + this.selectedFile.name;
-      const filePath = `hao-map-mart/${nameImg}`;
-      const fileRef = this.storage.ref(filePath);
-      this.storage.upload(`hao-map-mart/${nameImg}`, this.selectedFile).snapshotChanges().pipe(
-        finalize(() => {
-          fileRef.getDownloadURL().subscribe((url) => {
-            this.productForm.patchValue({url: url});
-            // console.log(url);
-            // console.log(this.formNews.value);
-            const prodcut = this.productForm.value;
-            this.productService.update(prodcut).subscribe(
-              value => {
-                this.toast.success('Chỉnh sửa mới thành công');
-                history.back();
-              },
-              error => {
-                this.toast.error('Chỉnh sửa thất bại')
-              }
-            )
-          });
-        })
-      ).subscribe();
+      if (this.selectedFile == null){
+        const prodcut = this.productForm.value;
+        this.productService.update(prodcut).subscribe(
+          value => {
+            this.toast.success('Chỉnh sửa mới thành công');
+            history.back();
+          },
+          error => {
+            this.toast.error('Chỉnh sửa thất bại')
+          }
+        )
+      }else {
+        const nameImg = this.getCurrentDateTime() + this.selectedFile.name;
+        const filePath = `hao-map-mart/${nameImg}`;
+        const fileRef = this.storage.ref(filePath);
+        this.storage.upload(`hao-map-mart/${nameImg}`, this.selectedFile).snapshotChanges().pipe(
+          finalize(() => {
+            fileRef.getDownloadURL().subscribe((url) => {
+              this.productForm.patchValue({url: url});
+              // console.log(url);
+              // console.log(this.formNews.value);
+              const prodcut = this.productForm.value;
+              this.productService.update(prodcut).subscribe(
+                value => {
+                  this.toast.success('Chỉnh sửa mới thành công');
+                  history.back();
+                },
+                error => {
+                  this.toast.error('Chỉnh sửa thất bại')
+                }
+              )
+            });
+          })
+        ).subscribe();
+      }
     }
   }
 }

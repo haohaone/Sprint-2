@@ -9,16 +9,14 @@ import com.example.demo.service.customer.ICustomerService;
 import com.example.demo.service.user.impl.RoleServiceImpl;
 import com.example.demo.service.user.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -59,7 +57,7 @@ public class LoginController {
     @PostMapping(value = "/loginWithFb")
     public ResponseEntity<?> loginWithFb(@RequestBody Customer customerDto){
         if (!userService.existsByUsername(customerDto.getAppUser().getUsername())){
-            customerService.addNew(customerDto);
+            customerService.addNewByFb(customerDto);
         }
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(customerDto.getAppUser().getUsername(), customerDto.getAppUser().getPassword()));
@@ -75,5 +73,10 @@ public class LoginController {
         jwtResponse.setCustomer(customer.get());
         jwtResponse.setErrorStatus(false);
         return ResponseEntity.ok(jwtResponse);
+    }
+
+    @GetMapping("/checkUserName/{userName}")
+    public ResponseEntity<?> checkUserName(@PathVariable("userName") String userName) {
+        return new ResponseEntity<>(userService.existsByUsername(userName), HttpStatus.OK);
     }
 }

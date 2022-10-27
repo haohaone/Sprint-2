@@ -34,6 +34,7 @@ import {
   FacebookLoginProvider,
 } from 'angularx-social-login';
 import { ChatRealTimeComponent } from './chat-real-time/chat-real-time.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { ChatRealTimeComponent } from './chat-real-time/chat-real-time.component
     UserInformationComponent,
     AddNewComponent,
     ChartComponent,
-    ChatRealTimeComponent
+    ChatRealTimeComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,

@@ -66,12 +66,12 @@ export class LoginComponent implements OnInit {
             }
           }
         });
-        history.back();
+        this.router.navigateByUrl('');
         this.shareDataService.sendClickEvent();
         this.toastService.success('Đăng nhập thành công')
       },
       error => {
-        this.toastService.error('Đăng nhập thất bại')
+        this.toastService.error('Tài khoản hoặc mật khẩu không chính xác', 'Đăng nhập thất bại')
       }
     )
   }

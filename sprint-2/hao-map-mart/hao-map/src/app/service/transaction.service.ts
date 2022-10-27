@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Transaction} from "../model/transaction";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TransactionService {
-  API_URL = 'http://localhost:8080/'
+  API_URL = `${environment.API_URL}`;
   header = new HttpHeaders().set('Authorization', sessionStorage.getItem('token'));
 
   constructor(private http: HttpClient) {

@@ -29,10 +29,9 @@ public class AppUser {
     public AppUser() {
     }
 
-    public AppUser(String username, String password, Set<AppRole> appRoles) {
+    public AppUser(String username, String password) {
         this.username = username;
         this.password = password;
-        this.appRoles = appRoles;
     }
 
     public Set<AppRole> getAppRoles() {

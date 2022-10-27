@@ -15,12 +15,14 @@ import {AdminMemberRoleService} from "./service/admin-member-role.service";
 import {AddNewComponent} from "./product/add-new/add-new.component";
 import {ChartComponent} from "./product/chart/chart.component";
 import {ChatRealTimeComponent} from "./chat-real-time/chat-real-time.component";
+import {SignUpComponent} from "./sign-up/sign-up.component";
 
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'detail/:id', component: DetailComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'sign-up', component: SignUpComponent},
   {path: 'cart', component: CartComponent},
   {path: 'watch', component: WatchComponent},
   {path: 'headPhone', component: HeadPhoneComponent},
